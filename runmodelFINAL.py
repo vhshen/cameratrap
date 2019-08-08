@@ -24,7 +24,7 @@ def imageAdder(path_in):
   path= path_in
   image=cv2.imread(path)
   image2= cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-  img=cv2.resize(imaeg, (224,224))
+  img=cv2.resize(image, (224,224))
   return img
   
 img=imageAdder(image_path)
@@ -32,7 +32,7 @@ img=img/255
 
 def predictor(image):
   test_image_batch=image
-  test_image_batch=test_image_batch.reshape(1, 224, 224 3)
+  test_image_batch=test_image_batch.reshape(1, 224, 224, 3)
   preds= model.predict_classes(test_image_batch, batch_size=1)
   probs= model.predict(test_image_batch, batch_size=1)
   print(preds)
