@@ -1,0 +1,838 @@
+LEGAL NOTICES
+
+This document supports the XNOR.AI® SDK. This document was last updated January
+8, 2019.
+
+# # #
+
+COPYRIGHT AND TRADEMARK NOTICES
+
+© Copyright 2019 XNOR.AI, INC. All rights reserved.
+
+XNOR.AI and the XNOR.AI logo are registered or unregistered trademarks of
+XNOR.AI, INC. in the United States and other jurisdictions. All other trademarks
+are the property of their respective owners.
+
+This copy of the XNOR.AI SDK is being made available for limited, non-commercial
+purposes for developers authorized to download and use this SDK pursuant to and
+in accordance with the XNOR.AI Evaluation SDK License Terms set forth below,
+which includes, among other things, a right on the part of both you and XNOR.AI
+to terminate the agreement embodied in the Evaluation SDK License Terms at any
+time (see Section 8.2 below) and an agreement to arbitrate any dispute that
+might arise between you and XNOR.AI (see Section 10.1 below).
+
+# # #
+
+XNOR.AI EVALUATION SDK LICENSE TERMS : FOR NON-COMMERCIAL PURPOSES
+
+THIS DOCUMENT CONTAINS THE TERMS AND CONDITIONS THAT GOVERN YOUR ACCESS TO AND
+USE OF THE XNOR.AI SDK FOR NON-COMMERCIAL PURPOSES RELATED TO EVALUATION OF THE
+XNOR.AI SDK. THESE TERMS AND CONDITIONS, WHICH WE REFER TO AS THE "AGREEMENT,"
+ARE AN AGREEMENT BETWEEN YOU AND XNOR.AI (OR, IF YOU ARE AUTHORIZED TO ACCESS
+AND USE THE XNOR.AI SDK ON BEHALF OF AN ENTITY OF WHICH YOU ARE AN EMPLOYEE OR
+OTHER TYPE OF AUTHORIZED AGENT, BETWEEN THAT ENTITY AND XNOR.AI). THE TERMS
+"XNOR.AI," "WE," "US," AND "OUR" REFER TO XNOR.AI, INC., A DELAWARE CORPORATION.
+YOU ARE REFERRED TO WITH THE TERMS "YOU" AND "YOUR." ALSO, EITHER US OR YOU MAY
+BE REFERRED TO IN THIS AGREEMENT AS A "PARTY" AND, COLLECTIVELY, AS THE
+"PARTIES."
+
+READ THIS AGREEMENT CAREFULLY BEFORE ACCESSING OR USING THE XNOR.AI SDK OR ANY
+OF ITS COMPONENTS. BY ACCESSING OR USING THE XNOR.AI SDK OR ANY OF ITS
+COMPONENTS, YOU AGREE TO BE BOUND BY THIS AGREEMENT. IF YOU DO NOT ACCEPT THESE
+TERMS AND CONDITIONS, DO NOT ACCESS OR USE THE XNOR.AI SDK.
+
+THESE TERMS AND CONDITIONS DO NOT ALTER IN ANY WAY THE TERMS OR CONDITIONS OF
+ANY OTHER AGREEMENT YOU MAY HAVE WITH US FOR PRODUCTS, SERVICES, SOFTWARE,
+TOOLS, DOCUMENTATION, OR OTHERWISE. IF YOU ARE ACCESSING OR USING THE XNOR.AI
+SDK ON BEHALF OF AN ENTITY OF WHICH YOU ARE AN EMPLOYEE OR OTHER TYPE OF AGENT,
+YOU REPRESENT AND WARRANT THAT YOU ARE AUTHORIZED TO ACCEPT THIS AGREEMENT ON
+SUCH ENTITY'S BEHALF.
+
+THE CAPITALIZED TERMS THAT WE USE IN THIS AGREEMENT ARE DEFINED IN SECTION 11
+BELOW OR ELSEWHERE IN THIS AGREEMENT.
+
+1. DESCRIPTION OF THE XNOR.AI SDK
+
+1.1 The XNOR.AI SDK Comprises Several Components.
+
+The XNOR.AI SDK comprises modules (in executable, binary format), certain data
+(also in binary format), sample applications (in source code format and/or
+executable, binary format), headers and other support files (in source code
+format), scripts for building samples (also in source code format), and certain
+documentation in plain text. These components, collectively, are referred to
+herein as the XNOR.AI SDK, as more fully defined in Section 11.8 below. Modules,
+including any data, sample applications, headers and other support files, or
+documentation accompanying modules, which, together, make up components of the
+XNOR.AI SDK, are sometimes referred to in this Agreement, separately, as
+"Modules." However, all references in this Agreement to the XNOR.AI SDK include
+Modules, as components of the XNOR.AI SDK.
+
+1.2 You May Access Modules Separately.
+
+From time to time, we may make certain Modules available to you separately from
+the XNOR.AI SDK as a whole. For example, after accessing and using the XNOR.AI
+SDK for the evaluation purposes described in this Agreement, you may wish to
+access and use an additional Module made available by us separately. If, now or
+in the future, you access one or more Modules separately from your access to the
+XNOR.AI SDK as a whole, your access to and use of the Module is subject to the
+terms, conditions, limitations, and restrictions set forth in this Agreement,
+plus any additional terms, conditions, limitations, or restrictions set forth in
+this Agreement that apply only to Modules.
+
+2. YOUR PERMISSION TO USE THE XNOR.AI SDK
+
+2.1 We Grant You a Limited License to Develop Software Applications for Purposes
+of Evaluating the XNOR.AI SDK.
+
+Subject to the terms and conditions set forth in this Agreement, we hereby grant
+you a limited, non-exclusive license to access the XNOR.AI SDK on machines and
+devices owned, leased, or otherwise controlled by you and internally use the
+XNOR.AI SDK for the purpose of developing one or more Software Applications in
+the manner described in the documentation that is contained in or that
+accompanies the XNOR.AI SDK for the sole purpose of evaluating the XNOR.AI SDK
+and its components. You may not access or use the XNOR.AI SDK or a reproduction
+of the XNOR.AI SDK for any other purpose, and you will not knowingly allow any
+person or entity that gains access to the XNOR.AI SDK through you to do anything
+that is not permitted by this Agreement. You may not reproduce the XNOR.AI SDK
+or any component of the XNOR.AI SDK except as otherwise expressly permitted by
+this Agreement. You may not market, rent, distribute, publicly display, publish,
+disclose, license, sublicense, transfer, assign, sell, or offer to sell the
+XNOR.AI SDK or any of its components to others except as otherwise expressly
+permitted by this Agreement. You may not modify the XNOR.AI SDK or any of its
+components, including any source code associated with the XNOR.AI SDK, except as
+otherwise expressly permitted by this Agreement, unless you have entered into a
+separate agreement with us that expressly grants you permission to do so. For
+the avoidance of doubt, the license granted to you in this Section 2.1 relates
+solely to your use of the XNOR.AI SDK and, in no event, are you granted an
+implied license to exercise rights with respect to any other intellectual
+property owned, licensed, or otherwise controlled by us.
+
+2.2 You are Free to Use Your Software Applications Internally for Purposes of
+Evaluating the XNOR.AI SDK and Its Components.
+
+In connection with the license to the XNOR.AI SDK that we grant to you in
+Section 2.1 above, you are free to use the Software Application, or Software
+Applications, that you develop using the XNOR.AI SDK internally for purposes of
+evaluating the XNOR.AI SDK and its components; provided that you do not
+distribute, commercialize, or otherwise make your Software Applications
+available for use by others; provided, further, that you do not, directly or
+indirectly, market, rent, distribute, publicly display, publish, disclose,
+license, sublicense, transfer, sell, offer to sell, or furnish the XNOR.AI SDK
+or its components to others, including in conjunction with or as part of your
+Software Application, or Software Applications. Notwithstanding the foregoing,
+we grant you permission to display your Software Applications on a limited
+basis, in low volume, for demonstration purposes only, consistent with your goal
+of evaluating the XNOR.AI SDK. If you wish to use the Software Application, or
+Software Applications, that you develop using the XNOR.AI SDK in a manner that
+is not permitted by this Agreement, prior to doing so, you will contact us at
+sales@xnor.ai. At our discretion, we may agree to enter into additional terms
+and conditions with you concerning your licensed use of the XNOR.AI SDK.
+Additional terms and conditions, if any, will consist of a separate written
+agreement between us and you (or a rider to this Agreement that, when executed
+and delivered by us and you, is incorporated into the terms and conditions set
+forth in this Agreement). Either way, the separate agreement (or rider) will
+contain terms and conditions in addition to those set forth in this Agreement
+that will apply to your licensed use of the XNOR.AI SDK in the manner that we
+and you agree upon. The separate agreement (or rider) may include fees in
+consideration for additional rights and fewer restrictions.
+
+2.3 You May Modify and Compile Distributable Source Code, If Any, Included in
+the XNOR.AI SDK.
+
+To the extent that Distributable Source Code is provided to you as part of the
+XNOR.AI SDK, we hereby grant you permission to use, modify, and compile the
+Distributable Source Code for the purposes of developing Software Applications
+pursuant to the license granted by us to you in Sections 2.1 and 2.2 above and
+use the machine-readable object code that is created by compiling the
+Distributable Source Code with your Software Application, or Software
+Applications, in accordance with the license granted by us to you in Sections
+2.1 and 2.2 above. Notwithstanding the foregoing, you will not modify any files
+that are included in the XNOR.AI SDK.
+
+2.4 End Users of Your Software Applications Cannot Be Allowed to Reverse
+Engineer Your Software Applications.
+
+In order to protect our proprietary rights in the XNOR.AI SDK, you must require
+end users of your Software Applications, in the terms and conditions that apply
+to their access to and use of your Software Applications, to expressly agree not
+to Reverse Engineer your Software Applications, except to the extent that you
+are expressly precluded by applicable law from imposing such restrictions.
+
+2.5 You Are Not Allowed to Use the XNOR.AI SDK in a Manner that Makes It Subject
+to an Open Source License Agreement.
+
+Notwithstanding anything contained in this Agreement to the contrary, you may
+not combine, distribute, or otherwise use the XNOR.AI SDK with any code or other
+content that is licensed pursuant to a license agreement that, directly or
+indirectly, requires that all or part of the XNOR.AI SDK be governed pursuant to
+any terms or conditions other than those set forth in this Agreement
+("Non-Allowable License"). By way of example only, code or content licensed
+pursuant to the following license agreements is not allowed: (a) the GNU General
+Public License (GPL); (b) the GNU Lesser General Public License (LGPL), unless
+you are merely dynamically linking a shared library; or (c) the Creative Commons
+Attribution-ShareAlike License. You may not license or sublicense the XNOR.AI
+SDK pursuant to a Non-Allowable License, and any attempt, completed attempt, or
+written agreement by you to do so will cause this Agreement to automatically and
+immediately terminate, including immediate termination of the licenses and
+permissions that we grant to you in Sections 2.1, 2.2 , and 2.3 above. For the
+avoidance of doubt, none of the terms or conditions set forth in this Section
+2.5 are meant to limit any rights or obligations you may have pursuant to one or
+more open source license agreements pursuant to which we, now or in the future,
+may make certain components of the XNOR.AI SDK, such as scripts, available for
+use by developers. In the event, we will make it clear that such components are
+licensed pursuant to an open source license and not this Agreement.
+
+3. YOUR OBLIGATIONS WHEN YOU CHOOSE TO USE THE XNOR.AI SDK
+
+3.1 You Are Responsible for Your and Your Authorized User's Use of the XNOR.AI
+SDK.
+
+You are responsible for all acts and omissions related, directly or indirectly,
+to accessing, downloading, installing, and using the XNOR.AI SDK by you and, if
+applicable, each of your Authorized Users. YOU WILL ENSURE THAT:
+
+3.1.1 You have the right and authority to enter into this Agreement, either on
+your own behalf or on behalf of an entity of whom you are an employee or other
+type of authorized agent;
+
+3.1.2 You are at least 18 years of age or the age of majority in the
+jurisdiction in which you reside, whichever is greater;
+
+3.1.3 You and, if applicable, your Authorized Users only use the XNOR.AI SDK in
+accordance with the terms and conditions set forth in this Agreement (including
+the limitations and restrictions on distribution and commercial use of Software
+Applications); all applicable laws and regulations; and the documentation
+provided by us to you, if any, as part of and for use in conjunction with the
+XNOR.AI SDK;
+
+3.1.4 You and, if applicable, your Authorized Users use reasonable efforts to
+secure and protect from inadvertent disclosure to others the contents of the
+XNOR.AI SDK, including any associated documentation;
+
+3.1.5 You and, if applicable, your Authorized Users do not incorporate the
+XNOR.AI SDK into any other software development kit or integrated development
+environment without the prior written consent of one of our authorized officers;
+
+3.1.6 You and, if applicable, your Authorized Users do not work around any
+technical limitations in any of the components comprised by the XNOR.AI SDK;
+
+3.1.7 Neither your Software Applications nor any of the products, services, and
+content made available through or as a part of your Software Applications
+infringes any of our, our affiliates', our customers', or any other third
+party's Intellectual Property Rights;
+
+3.1.8 Each of your Software Applications and their intended uses, including any
+and all products, services, and content made available through or as a part of
+your Software Applications, comply with all applicable laws and regulations;
+
+3.1.9 You and, if applicable, your Authorized Users do not knowingly, after
+making such inquiries as a reasonable person in your or your Authorized Users'
+position would undertake, develop or distribute Software Applications or make
+any products, services, or content available through or as a part of your
+Software Applications the use of which, in isolation or with any hardware,
+software, systems, networks, services, content, or data, contain features or
+functionality, accessible to end users or otherwise, that could be used for
+inappropriate or improper purposes (including any and all criminal and tortious
+activity) or otherwise have a detrimental effect on any person or entity; and
+
+3.1.10 You take appropriate actions to ensure that your Authorized Users, if
+any, comply with the terms and conditions set forth in this Agreement, which may
+include entering into a written agreement with each of your Authorized Users
+that contain terms and conditions designed to ensure that your obligations in
+this Agreement and similar agreements are and will be met.
+
+3.2 The XNOR.AI SDK is Subject to Certain Export and Import Restrictions.
+
+You acknowledge that we are subject to regulation by agencies of the United
+States, such as the U.S. Treasury Department and the U.S. Commerce Department,
+which prohibit export or diversion of certain products and/or technology to
+certain countries, persons, or entities. You understand that the XNOR.AI SDK may
+include software or other materials that are subject to export, import, and/or
+use controls by the U.S. government or other governments with authority over
+jurisdictions from which the XNOR.AI SDK is being exported or to which the
+XNOR.AI SDK is being imported. You agree that the XNOR.AI SDK will not be
+exported, imported, used, transferred, or re-exported except in compliance with
+such laws, regulations, and controls. More specifically, you agree that you will
+not supply the XNOR.AI SDK or any of its components to any person or entity if
+you know, or have reason to know, that such person intends to export or
+re-export the XNOR.AI SDK or such components in violation of such laws,
+regulations, or controls. Further, you agree not to download, export, or
+re-export the XNOR.AI SDK or any of its component (a) into (or to a national or
+resident of) any country to which the United States has embargoed goods; or (b)
+to any person on the U.S. Treasury Department's list of Specially Designated
+Nationals or the U.S. Commerce Department's Denied Person's List.
+Notwithstanding any agreement with a third party or any provision of law,
+regulation, or policy, if you are any agency of the government of the United
+States, then your rights in respect of the XNOR.AI SDK will not exceed the
+rights provided pursuant to this Agreement, unless you have entered into a
+separate agreement with us, signed by one of our authorized officers, in which
+we have granted you permission to do so.
+
+3.3 You Will Give Us Credit in Your Software Applications and In Connection with
+Other Promotional Activities for Use of the XNOR.AI SDK.
+
+The XNOR.AI SDK may include instructions or requirements concerning proper
+attribution to us in consideration for your use of it to develop Software
+Applications. Unless we agree or instruct you otherwise, you will comply with
+such instructions and requirements and agree that you will not remove or disable
+any proprietary rights notices or features or functionality of the XNOR.AI SDK
+that are intended to give attribution to us for the products and services that
+we have developed. By way of example only, the XNOR.AI SDK may include
+instructions for a flash screen that exhibits when your Software Application
+launches, displaying our logo or a brief marketing statement. In addition, in
+connection with your promotion of Software Applications (through activities such
+as disseminating videos, publishing blogs, sending emails, public presentations,
+or other similar promotional activities), you will ensure that your promotions
+are accompanied by attribution to us and the XNOR.AI SDK in consideration for
+your use of it to develop the Software Applications you are promoting.
+
+4. USE OF THE XNOR.AI SDK IS NOT FREE IN ALL INSTANCES
+
+4.1 We Do Not Charge a Fee for Use in Developing Software Applications Pursuant
+to and in Accordance with this Agreement.
+
+If you use the XNOR.AI SDK to develop one or more Software Applications pursuant
+to the licenses and permissions granted by us to you in Sections 2.1, 2.2, and
+2.3 above and adhere to the terms, conditions, limitations, and restrictions set
+forth in this Agreement, we do not charge you a fee for your use of the XNOR.AI
+SDK. However, the XNOR.AI SDK, though free for the purpose stated in this
+Section 4.1, is not open source software of the kind that is free to repurpose
+and redistribute without any limitations or restrictions, and you are still
+subject to all of the terms, conditions, limitations, and restrictions set forth
+in this Agreement.
+
+4.2 We May Charge a Fee for Certain Uses of the XNOR.AI SDK; Additional Terms
+and Conditions Will Apply.
+
+If you wish to use the XNOR.AI SDK in a manner that is not permitted by this
+Agreement, prior to using the XNOR.AI SDK for that purpose, you will contact us
+at sales@xnor.ai. At our discretion, we may agree to enter into additional terms
+and conditions with you concerning your licensed use of the XNOR.AI SDK.
+Additional terms and conditions, if any, will consist of a separate written
+agreement between us and you (or a rider to this Agreement that, when executed
+and delivered by us and you, is incorporated into the terms and conditions set
+forth in this Agreement). Either way, the separate agreement (or rider) will
+contain terms and conditions in addition to those set forth in this Agreement
+that will apply to your licensed use of the XNOR.AI SDK in the manner that we
+and you agree upon. The separate agreement (or rider) may include fees in
+consideration for additional rights and fewer restrictions.
+
+4.3 You Will Cooperate with Us to Promote the XNOR.AI SDK and Software
+Applications Developed by You.
+
+You will cooperate with us by accepting any reasonable request from us to
+support efforts promoting the use of the XNOR.AI SDK and Software Applications
+that you develop using the XNOR.AI SDK, including the following: (a) requests by
+us to participate in targeted press and analyst interviews highlighting the
+benefits of using the XNOR.AI SDK; and (b) requests by us to participate in
+customer case studies that we develop, including allowing us to demonstrate the
+effectiveness, quality, and value of the XNOR.AI SDK by showcasing one or more
+of the Software Applications that you develop in such studies or in marketing,
+promotional, and demonstration materials that we publish, display, and
+distribute. We will not undertake any of the activities described in this
+Section 4.3 without your prior approval. However, if you give us your approval
+pursuant to this Section 4.3, you hereby grant us a worldwide, perpetual,
+irrevocable, non-exclusive, non-transferable, non-sublicenseable, royalty-free
+license to reproduce and use your name and trademarks and logos, if any, in
+connection with our production, use, publication, display, and distribution of
+such case studies and other marketing, promotional, and demonstration materials.
+
+4.4 If Any Sales or Other Use Taxes Apply, You Agree that You Are Responsible
+for Them.
+
+You acknowledge and agree that, as between us and you, you are solely
+responsible for paying all applicable customs, duties, sales, use, value added,
+or other taxes, federal, state, or otherwise, however designated, that are
+levied or imposed by reason of the licenses granted and other transactions
+contemplated by this Agreement, excluding only taxes based on our net income.
+
+5. THERE ARE CONSEQUENCES FOR A BREACH OF YOUR OBLIGATIONS IN SECTIONS 2.1
+THROUGH 3.3 ABOVE.
+
+If you become aware of any circumstances that constitute an actual or threatened
+breach of the terms, conditions, obligations, limitations, or restrictions set
+forth in Sections 2.1 through 3.3 above, you will notify us promptly in writing
+and immediately take all steps reasonably necessary to correct and remedy the
+circumstances that constitute the actual or threatened breach. Failure to comply
+with any of the terms, conditions, obligations, limitations, or restrictions set
+forth in Sections 2.1 through 3.3 above, including your obligations set forth in
+this Section 5, will constitute a material breach of this Agreement, and we will
+have the right to immediately terminate this Agreement, with or without advance
+notice, including termination of the licenses and permissions that we grant to
+you in Sections 2.1, 2.2, and 2.3 above. Our right to terminate this Agreement
+pursuant to this Section 5 is not our exclusive remedy. As set forth in Section
+10.9 below, we may have additional rights and remedies under the law, which we
+are free to exercise.
+
+6. WE RESERVE OUR RIGHTS TO THE XNOR.AI SDK AND OUR OTHER PRODUCTS AND SERVICES
+
+6.1 We Reserve Our Intellectual Property and Other Proprietary Rights.
+
+We reserve all rights to the XNOR.AI SDK not otherwise expressly granted in
+Section 2 above. The XNOR.AI SDK, including each copy of the XNOR.AI SDK and all
+components of the XNOR.AI SDK, including Modules, are licensed to you, not sold.
+You acknowledge that your rights in and to XNOR.AI SDK are solely as set forth
+in Sections 2.1, 2.2, and 2.3 above and do not include any implied licenses to
+or any rights of ownership in the XNOR.AI SDK or any of its components. You
+agree that we own all right, title, and interest, including any and all
+Intellectual Property Rights, in and to the XNOR.AI SDK and any and all
+authorized and unauthorized changes, corrections, or other modification made to
+and derivative works of the XNOR.AI SDK. You hereby irrevocably assign to us any
+and all rights you are deemed to have in any such modifications and derivatives,
+including any and all associated Intellectual Property Rights, and agree to
+execute all documents necessary to implement and effect this assignment.
+
+6.2 You Know that You May Need to Seek and Obtain Other Licenses.
+
+You understand that this Agreement only grants a license to the XNOR.AI SDK,
+itself, for non-commercial purposes and that you may need to seek and obtain
+licenses or other forms of permission from us or others in order to use,
+reproduce, publish, display, license, sell, offer for sale, or distribute your
+Software Applications in the manner that you intend. You agree that we have no
+obligation to you with respect to providing notice of or acquiring such licenses
+or permissions, and you understand that this Agreement does not transfer,
+assign, or license to you any Intellectual Property Rights in or related to any
+other products or services designed and developed by us, now or in the future,
+that are not covered by this Agreement.
+
+6.3 You Will Not Assert Patent Claims Against Us.
+
+You will not assert, either during the term of this Agreement or after the
+expiration of this Agreement, any patent claims in any jurisdiction against us,
+our affiliates, or any of our respective licensees in which you allege that one
+or more patents, directly or indirectly, are infringed based on: (a) any version
+of the XNOR.AI SDK or any of its components; or (b) the interoperation of any
+product, service, or technology offered by us, our affiliates, or any of our
+respective licensees with the XNOR.AI SDK or any of its components.
+Notwithstanding the foregoing, you will be relieved of this obligation where
+your patent claims are being asserted defensively in response to a third-party
+claim, and the third party asserting such claim does not withdraw that assertion
+within 10 days after being notified of your obligations set forth in this
+Section 6.3.
+
+6.4 If You Choose to Provide Us with Feedback, We Own the Feedback You Provide.
+
+You and, if applicable, your Authorized Users may provide us with feedback on
+the XNOR.AI SDK, including feedback on bugs, faults, errors, and
+non-conformities within or relating to the XNOR.AI SDK and suggestions for
+improvements to the XNOR.AI SDK, one or more of its components, or one or more
+of our other products or services (collectively, "Feedback"). You hereby agree
+that we will own any and all Feedback, with no obligation to pay any amounts to
+you or others, including all modifications to the XNOR.AI SDK, each of the
+components of the XNOR.AI SDK, and each of our other products and services that
+are developed or identified in the course or as a result of your use of the
+XNOR.AI SDK, including all associated Intellectual Property Rights (collectively
+"Improvements"). To the extent that you are deemed to have any ownership rights
+in and to any Improvements, you hereby assign to us all of your right, title,
+and interest in and to such Improvements, including all associated Intellectual
+Property Rights. Further, you will not knowingly provide us with any
+Improvements that are subject to third-party Intellectual Property Rights, and
+you hereby agree to cooperate fully and to ensure that your Authorized Users
+cooperate fully with us with respect to executing and delivering any further
+instruments and doing any other acts that we reasonably request in order to
+ensure that we own any and all Improvements and to enable us to register and
+otherwise protect any and all Intellectual Property Rights associated with
+Improvements.
+
+7. OUR WARRANTIES AND OUR LIABILITY ARE EXPRESSLY LIMITED
+
+7.1 Our Warranties are Expressly Limited.
+
+THE XNOR.AI SDK IS PROVIDED BY US TO YOU "AS IS," AND WE MAKE NO REPRESENTATIONS
+OR WARRANTIES OF ANY KIND WHATSOEVER, EXPRESS OR IMPLIED, STATUTORY OR
+OTHERWISE, IN CONNECTION WITH THIS AGREEMENT OR ANY PRODUCTS OR SERVICES
+PROVIDED PURSUANT TO THIS AGREEMENT. BECAUSE THE XNOR.AI SDK IS PROVIDED AS-IS,
+WE MAY NOT PROVIDE YOU WITH ANY TECHNICAL SUPPORT IN CONNECTION WITH YOUR USE OF
+IT. WITHOUT LIMITING THE FOREGOING, WE SPECIFICALLY DISCLAIM ANY WARRANTY THAT
+THE XNOR.AI SDK WILL BE ERROR FREE OR THAT ALL ERRORS IN THE XNOR.AI SDK WILL BE
+CORRECTED. WE ALSO SPECIFICALLY DISCLAIM THE IMPLIED WARRANTIES OF
+MERCHANTABILITY, ACCURACY, QUALITY, TIMELINESS, TRUTHFULNESS, COMPLETENESS,
+RELIABILITY, FITNESS FOR A PARTICULAR PURPOSE (EVEN IF WE ARE ADVISED OF THE
+PURPOSE), TITLE, AND NONINFRINGEMENT AND THOSE IMPLIED WARRANTIES, IF ANY,
+ARISING FROM A COURSE OF DEALING OR USAGE OF TRADE. ALL SUCH WARRANTIES ARE
+HEREBY EXCLUDED TO THE FULLEST EXTENT PERMITTED BY LAW. NO ADVICE OR
+INFORMATION, WHETHER ORAL OR WRITTEN, OBTAINED FROM US OR ELSEWHERE WILL CREATE
+ANY WARRANTY NOT EXPRESSLY STATED IN THIS AGREEMENT. SOME JURISDICTIONS DO NOT
+ALLOW THE EXCLUSION OF CERTAIN WARRANTIES IN CERTAIN CIRCUMSTANCES. ACCORDINGLY,
+SOME OF THE LIMITATIONS SET FORTH IN THIS SECTION 7.1 MAY NOT APPLY.
+
+7.2 Our Liability is Expressly Limited.
+
+IN NO EVENT WILL WE BE LIABLE FOR ANY DAMAGES DIRECTLY OR INDIRECTLY ARISING OUT
+OF OR RELATED TO THIS AGREEMENT OR ANY PRODUCTS OR SERVICES PROVIDED BY US TO
+YOU PURSUANT TO THIS AGREEMENT OR IN CONNECTION WITH THE TRANSACTIONS
+CONTEMPLATED BY THIS AGREEMENT IN EXCESS OF ONE HUNDRED U.S. DOLLARS, REGARDLESS
+OF WHETHER SUCH LIABILITY SOUNDS IN CONTRACT, NEGLIGENCE, TORT, STRICT
+LIABILITY, WARRANTY, OR OTHERWISE. FURTHER, IN NO EVENT WILL WE BE LIABLE FOR
+(a) ANY DAMAGES WHATSOEVER, DIRECTLY OR INDIRECTLY, ARISING OUT OF ANY PRODUCTS,
+SERVICES, OR CONTENT MADE AVAILABLE THROUGH OR AS A PART OF YOUR SOFTWARE
+APPLICATIONS OR (b) ANY INDIRECT, INCIDENTAL, CONSEQUENTIAL, SPECIAL, OR
+EXEMPLARY DAMAGES OF ANY KIND WHATSOEVER, WHETHER OR NOT SUCH DAMAGES COULD
+REASONABLY BE FORESEEN AND EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF
+SUCH DAMAGES.
+
+7.3 These Limitations of Liability Represent Independent Allocations of Risk and
+Reflect that the XNOR.AI SDK is Made Available to You at No Cost or Almost No
+Cost.
+
+EACH PROVISION OF THIS AGREEMENT THAT PROVIDES FOR A LIMITATION OF LIABILITY,
+DISCLAIMER OF WARRANTIES, OR EXCLUSION OF DAMAGES IS TO ALLOCATE THE RISKS OF
+THIS AGREEMENT BETWEEN THE PARTIES. THIS ALLOCATION IS REFLECTED IN THE PRICING
+OFFERED BY US TO YOU AND IS AN ESSENTIAL ELEMENT OF THE BASIS OF THE BARGAIN
+BETWEEN US AND YOU. EACH OF THESE PROVISIONS IS SEVERABLE AND INDEPENDENT OF ALL
+OTHER PROVISIONS OF THIS AGREEMENT. THE LIMITATIONS IN THIS SECTION 7 WILL APPLY
+NOTWITHSTANDING THE FAILURE OF ESSENTIAL PURPOSE OF ANY LIMITED REMEDY IN THIS
+AGREEMENT.
+
+8. THIS AGREEMENT MAY HAVE A LIMITED TERM AND MAY BE TERMINATED
+
+8.1 This Agreement May Have a Limited Term.
+
+This Agreement is effective upon your agreement to be bound by its terms and
+conditions, as manifested by the conduct described in the second paragraph
+above, and expires upon termination of this Agreement in accordance with the
+provisions set forth in Section 8.2 below or, in the case in which you have
+entered into additional licensing terms and conditions in the form of a rider to
+this Agreement (please refer to Sections 2.2 and 4.2 above), upon the expiration
+or earlier termination of that rider. Upon termination of this Agreement for any
+reason, the licenses and permissions that we grant to you in this Agreement will
+immediately and automatically terminate, including the licenses and permissions
+granted by us to you in Sections 2.1, 2.2, and 2.3 above, at which point you
+will immediately stop accessing and/or using the XNOR.AI SDK, including all
+copies and components of the XNOR.AI SDK, and promptly destroy all copies and
+components of the XNOR.AI SDK in your possession or control, unless you have
+permission to keep and use such copies and components pursuant to a separate
+written agreement between us and you. If we ask, you will provide us with proof
+that such copies and components were destroyed.
+
+8.2 This Agreement May be Terminated or Suspended Under Certain Circumstances.
+
+EITHER PARTY IS ALLOWED TO TERMINATE THIS AGREEMENT AT ANY TIME FOR ANY REASON
+OR NO REASON BY SENDING THE OTHER PARTY WRITTEN NOTICE. For the avoidance of
+doubt, we are allowed to terminate this Agreement immediately, without penalty
+or liability of any kind, if you or one of your Authorized Users (a) fails to
+comply with one or more of the terms, conditions, obligations, limitations, or
+restrictions set forth in this Agreement, including those in Sections 2.1
+through 3.3 above; (b) tortiously or unfairly interferes with our customers, our
+business relations, or our operations; or (c) fails to comply with the terms and
+conditions set forth in any other agreement between us and you (each, "Cause").
+We are also permitted to terminate or suspend this Agreement if we determine, in
+our reasonable judgment, that any applicable law, regulation, or ruling
+prohibits us from providing the XNOR.AI SDK or any component of the XNOR.AI SDK
+to you or one or more of your Authorized Users. If this Agreement is terminated
+for Cause, you will immediately cease any and all use of any Software
+Application, or Software Applications, that you developed using the XNOR.AI SDK.
+Further, regardless of whether or not this Agreement is terminated for Cause or
+otherwise, you agree to immediately cease any and all use of any Software
+Application, or Software Applications, that do not comply with the terms and
+conditions set forth in this Agreement or were developed by you or one or more
+of your Authorized Users without complying with the terms and conditions set
+forth in this Agreement. For the avoidance of doubt, we will not have any
+liability to you or your Authorized Users as a result of our termination or
+suspension of this Agreement in accordance with the terms and conditions set
+forth in this Agreement or any termination or suspension of the license to use
+the XNOR.AI SDK granted by us to you as long as such termination or suspension
+complies with the terms of this Agreement. If this Agreement is terminated for
+Cause, you will pay us all reasonable attorney fees, fees related to
+collections, and related expenses, actually incurred by us in connection with
+our enforcement of our rights.
+
+8.3 Some Terms and Conditions Will Survive the Termination of this Agreement.
+
+The terms, conditions, representations, warranties, limitations, restrictions,
+and obligations contained in this Agreement that, by their sense and context,
+are intended to survive the performance of this Agreement will survive the
+completion of such performance and the termination of this Agreement. For the
+avoidance of doubt, any and all payment obligations that accrue to us pursuant
+to this Agreement prior to the effective date of its termination are intended to
+survive. However, none of the licenses or permissions granted by us to you
+pursuant to this Agreement, including those granted pursuant to Sections 2.1,
+2.2, and 2.3 are intended to survive.
+
+9. YOU WILL INDEMNIFY US FROM CERTAIN THIRD-PARTY CLAIMS THAT MIGHT BE ASSERTED
+AGAINST US DUE TO YOUR ACTS OR OMISSIONS
+
+You will indemnify, defend, and hold harmless us and our affiliates and each of
+our respective officers, directors, employees, agents, representatives,
+independent contractors, consultants, shareholders, licensors, vendors, and
+suppliers from and against any liabilities, losses, damages, and expenses,
+including court costs and reasonable attorney's fees, arising out of or in
+connection with any third-party claim (each, a "Claim") that: (a) alleges the
+infringement or misappropriation of any Intellectual Property Right by: (i) one
+or more of your Software Applications or the use thereof, including the
+combination of one or more of your Software Applications with any hardware,
+software, systems, networks, services, content, or data; (ii) any product,
+service, or content made available, or required to be made available, through or
+as a part of one or more of your Software Applications; or (iii) your or your
+Authorized Users' combination of the XNOR.AI SDK or any of its component with
+any hardware, software, systems, networks, services, content, or data; (b)
+alleges libel, slander, or defamation in connection with the use of one or more
+of your Software Applications or any product, service, or content made available
+through or as a part of one or more of your Software Applications; (c) alleges
+injury, death, or property or other damage arising from or related to the use of
+one or more of your Software Applications or any product, service, or content
+made available through or as a part of one or more of your Software
+Applications; (d) alleges facts that, if true, constitute a breach of your or
+your Authorized User's obligations set forth in this Agreement or any other
+agreement between us and you; or (e) alleges facts that, if true, would
+constitute a violation of applicable law or regulation by you or one or more of
+your Authorized Users in connection with the performance of this Agreement or
+the development, sale, and/or distribution of one or more of your Software
+Applications. Your obligations pursuant to this Section 9, with respect to each
+Claim, are contingent upon: (x) us providing you with notice of the Claim; (y)
+us providing reasonable cooperation, at your expense, in the defense and
+settlement of the Claim; and (z) you having sole authority to defend or settle
+the Claim; provided, that the failure to provide notice of the Claim will not
+relieve you of your obligations pursuant to this Section 9 except to the extent
+of any material prejudice directly resulting from our failure and you will not
+settle any Claim in a manner that admits guilt on behalf of us or imposes any
+restriction or obligation on us without obtaining the advance written consent of
+one of our authorized officers.
+
+10. ADDITIONAL TERMS AND CONDITIONS THAT APPLY TO OUR AGREEMENT WITH YOU
+
+10.1 We Will Resolve Our Disputes, If Any, by Negotiation and, If Necessary,
+Arbitration.
+
+In the event of any dispute, claim, question, or disagreement arising from or
+relating to this Agreement or the breach of this Agreement, the Parties will use
+their best efforts to settle the dispute, claim, question, or disagreement. To
+this end, the Parties will consult and negotiate with each other in good faith
+and, recognizing their mutual interests, attempt to reach a just and equitable
+resolution satisfactory to both Parties. If the Parties do not reach such a
+resolution within a period of 60 days, then, upon notice by either Party to the
+other, all such disputes, claims, questions, or disagreements will be finally
+settled by arbitration administered by the American Arbitration Association in
+accordance with the provisions of its Commercial Arbitration Rules, and judgment
+on the award rendered by the arbitrators may be entered in any court having
+jurisdiction thereof. Within 14 days after the commencement of arbitration, each
+Party will select one person to act as arbitrator and the two arbitrators
+selected by the parties will select a third arbitrator within 10 days after the
+day on which the second of them is appointment. If the arbitrators selected by
+the Parties are unable or fail to agree upon the third arbitrator, the third
+arbitrator will be selected by the American Arbitration Association. The place
+of the arbitration will be Seattle, Washington, U.S.A. The language of the
+arbitration will be English. Either Party, if it wishes to do so, may apply to
+the arbitrators seeking injunctive relief until the arbitration award is
+rendered or the controversy is otherwise resolved. Either Party, without waiving
+any remedy under this Agreement, also may seek from any court having
+jurisdiction any interim or provisional relief that is necessary to protect the
+rights or property of that Party, pending the establishment of the arbitral
+tribunal (or pending the arbitral tribunal's determination of the merits of the
+controversy). Except as may be required by law or as otherwise expressly
+permitted by this Section 10.1, neither a Party nor an arbitrator may disclose
+the existence, content, or results of any arbitration conducted pursuant to this
+Section 10.1, including any determination made or award given, without the prior
+written consent of both Parties.
+
+10.2 The Parties May Seek Equitable Remedies from a Court of Law in Certain
+Circumstances.
+
+Notwithstanding Section 10.1 above, each Party acknowledges and agrees that, due
+to the unique nature of Intellectual Property Rights, licenses to Intellectual
+Property Rights, and trade secrets and other confidential information, there can
+be no adequate remedy at law for any breach or threatened breach of a Party's
+obligations related to such matters, that any such breach or threatened breach
+may allow the defaulting Party or third parties to unfairly compete with the
+non-defaulting Party resulting in irreparable harm to the non-defaulting Party,
+that any such breach or threatened breach would cause irreparable harm to the
+non-defaulting Party, and, therefore, that upon any such breach or threatened
+breach, in addition to any other remedies at law or in equity that the
+non-defaulting Party may have, the non-defaulting Party is entitled, without the
+requirement of posting a bond or other security, to equitable relief, including
+injunctive relief and specific performance. Each Party hereby irrevocably
+consents to the exclusive jurisdiction and venue of the federal and state courts
+located in King County, Washington, U.S.A., in connection with any action
+seeking such conservatory or interim measures.
+
+10.3 This Agreement is Governed by the Laws of the State of Washington, U.S.A.
+
+This Agreement and all disputes, claims, or controversies arising out of or in
+connection with this Agreement, including any question regarding its formation,
+existence, validity, enforceability, performance, interpretation, breach, or
+termination will be governed by and construed in accordance with the substantive
+local laws of the State of Washington, U.S.A., without reference to its choice
+of law rules and not including the provisions of the 1980 U.N. Convention on
+Contracts for the International Sale of Goods.
+
+10.4 Our Relationship with You and Your Relationship with Us is that of
+Independent Contractors.
+
+The relationship between us and you is that of independent contractors.
+Consistent with each Party's status as an independent contractor, each Party
+will retain the sole and exclusive right to supervise, control, or direct the
+manner or means by which it performs its duties and exercises its rights under
+this Agreement. Nothing in this Agreement is to be construed as creating an
+agency, partnership, or joint venture relationship between the Parties. Neither
+Party shall have any right or authority to assume or create any obligations or
+to make any representations or warranties on behalf of the other Party, whether
+express or implied, or to bind the other Party in any respect whatsoever.
+
+10.5 Notices Will Be Provided in Writing to the Address that Each Party
+Provides.
+
+All notices and other communications required or permitted under this Agreement
+will be in writing, addressed to the applicable Party at the street address
+and/or email address provided by such Party to the other (which, in the case of
+a business entity, may be provided to the other Party by publicly displaying the
+address of such Party's principal corporate headquarters on the Internet or
+elsewhere), and deemed effectively delivered only: (a) upon personal delivery,
+(b) upon delivery by a courier service as confirmed by written delivery
+confirmation, (c) upon delivery by facsimile as confirmed by transmission
+receipt, (d) upon delivery by email provided that the subject of the email
+includes "RESPONSE REQUIRED – LEGAL" and receives a non-automated response, or
+(d) five days after deposit in the mail, postage prepaid.
+
+10.6 You May Not Assign this Agreement without Our Consent.
+
+You may not assign or transfer this Agreement, in whole or in part, without our
+prior written consent. We may freely assign this Agreement. Any assignment in
+violation of this provision will be null and void. Subject to the foregoing,
+this Agreement will come to the benefit of the successors and permitted assigns
+of the Parties.
+
+10.7 These Terms and Conditions Comprise the Entire Agreement between Us and You
+Concerning the XNOR.AI SDK.
+
+These terms and conditions comprise the entire agreement between us and you with
+respect to the subject matter of this Agreement and supersede all previous
+communications, representations, understandings, and agreements, either oral or
+written, between us and you with respect to the XNOR.AI SDK and any related
+services. No terms, provisions, or conditions of any purchase order,
+acknowledgement, or other business form that either Party may use in connection
+with the transactions contemplated by this Agreement will have any effect on the
+rights, duties, or obligations of the Parties under, or otherwise modify, this
+Agreement, regardless of any failure of a receiving Party to object to these
+terms, provisions, or conditions.
+
+10.8 This Agreement Cannot be Amended or Its Provisions Waived Except Under
+Limited Circumstances.
+
+No term or provision of this Agreement will be considered waived by either
+Party, and no breach excused by either Party, unless such waiver or consent is
+in writing signed on behalf of the Party against whom the waiver is asserted. No
+consent by either Party to, or waiver of, a breach by either Party, whether
+express or implied, will constitute a consent to, waiver of, or excuse of any
+other, different, or subsequent breach by either Party. Except as otherwise set
+forth in Section 10.10 below, this Agreement may be amended or supplemented only
+by a writing that refers explicitly to this Agreement and that is signed by both
+Parties.
+
+10.9 There Are a Few Additional Rules Governing the Interpretation of this
+Agreement.
+
+You acknowledge and represent that, in accepting this Agreement, you have had
+the opportunity to seek advice as to your legal rights from legal counsel and
+that you have read and understood all of the terms and provisions of this
+Agreement. As such, no ambiguity will be construed against us based upon a claim
+that we drafted the ambiguous language. Also, this Agreement is in the English
+language, which language will be controlling, even if interpretations of this
+Agreement in other languages are made. The headings appearing at the beginning
+of sections contained in this Agreement have been inserted for convenience only
+and will not be used to construe or interpret this Agreement. Whenever required
+by context, a singular term will include the plural, the plural term will
+include the singular, and the gender of any pronoun will include all genders.
+References to us and you will include our respective successors and/or permitted
+assignees. Any references to recitals, articles, sections, paragraphs,
+schedules, exhibits, riders, addenda, and other attachments are to the recitals,
+articles, sections, paragraphs, schedules, exhibits, riders, addenda, and other
+attachments to this Agreement. A reference to days shall mean calendar days and
+not business days or working days, unless otherwise stated in this Agreement.
+References to "include" and "including" will not be given a restrictive meaning
+and will be interpreted "without limitation." If any provision of this Agreement
+is determined to be unenforceable, that provision will be limited or eliminated
+to the minimum extent necessary for this Agreement to remain enforceable. The
+rights and recourse to remedies set forth in this Agreement will not, under any
+circumstances, be deemed to be exclusive. As such, each Party reserves to it all
+rights and recourse to remedies afforded by applicable law.
+
+10.10 Modification of this Agreement.
+
+We reserve the right to change or modify the terms and conditions of this
+Agreement, or any policy or guideline governing use of the XNOR.AI SDK, at any
+time and in our sole discretion; provided, that, in the event of a modification
+of the terms and conditions of this Agreement, we will notify you of the
+modifications and allow you to review and accept the Agreement, as modified,
+prior to continuing to use the XNOR.AI SDK. However, your continued use of the
+XNOR.AI SDK, following notice of modifications to this Agreement, will
+constitute your acceptance of this Agreement, as modified. If you do not agree
+to any modifications of this Agreement, as they may occur, you will immediately
+discontinue accessing and/or using the XNOR.AI SDK.
+
+11. DEFINITIONS THAT APPLY TO OUR AGREEMENT WITH YOU
+
+For purposes of this Agreement, the following terms will have the meanings
+ascribed to them below.
+
+11.1 "API" means an application programming interface.
+
+11.2 "Authorized Users" means: (a) any persons who provide services to you as
+full- or part-time employees; and (b) any persons who (i) provide services to
+you as contingent workers (e.g., individuals who provide services to you as
+independent contractors), (ii) are authorized by you to use the XNOR.AI SDK on
+your behalf, and (iii) use the XNOR.AI SDK to develop one or more Software
+Applications on your behalf.
+
+11.3 "Distributable Source Code" means certain application templates, code
+stubs, code snippets, example applications, sample code, and code fragments in
+source code or compiled form that are either included as part of the XNOR.AI SDK
+or that we otherwise make available to you pursuant to the licenses and
+permissions that we grant to you in Sections 2.1 and 2.3 above.
+
+11.4 "Intellectual Property Rights" means all rights in, to, or arising out of:
+(a) any U.S., international, or foreign patent or any software therefore and any
+and all reissues, divisions, continuations, renewals, extensions, and
+continuations-in-part thereof; (b) inventions (whether patentable or not in any
+country or other jurisdiction), invention disclosures, improvements, trade
+secrets, proprietary information, know-how, technology, and technical data; (c)
+copyrights, copyright registrations, mask works, mask works registrations,
+software, moral rights, trademarks, and rights of personality, privacy, and
+likeness, whether arising by operation of law, contract, license, or otherwise;
+and (d) any other similar or equivalent proprietary rights anywhere in the
+world.
+
+11.5 "Reverse Engineer" includes any act of reverse engineering, translating,
+disassembling, decompiling, decrypting, or deconstructing (including any aspect
+of “dumping of RAM/ROM or persistent storage,” “cable or wireless link
+sniffing,” or “black box” reverse engineering) data, software (including
+interfaces, protocols, and any other data included in or used in conjunction
+with programs that may or may not technically be considered software code),
+service, or hardware or any method or process of obtaining or converting any
+information, data, or software from one form into a human-readable form.
+
+11.6 "Software Application" means a software application developed using the
+XNOR.AI SDK, including Modules.
+
+11.7 "SDK" means any programming package (including any APIs, modules, data,
+sample applications, scripts for building sample applications, templates,
+headers or other support files, libraries, interfaces, documentation, or other
+programming tools or materials, whether tangible or intangible, in whatever form
+or medium, including on-line tools) that enables the development of software
+applications for any type of platform, framework, or system.
+
+11.8 "XNOR.AI SDK" means the SDK that we make available to you pursuant to this
+Agreement for purposes of developing one or more Software Applications, unless
+such materials are made available to you pursuant to a separate agreement
+between us and you. For purposes of this Agreement, the XNOR.AI SDK expressly
+includes Updates, but, for the avoidance of doubt, it does not include other
+products or services that we offer and that are not made available to you
+pursuant to this Agreement.
+
+11.9 "Updates" means bug fixes, updates, upgrades, enhancements, modifications,
+and new releases or versions of the XNOR.AI SDK created by us and made available
+by us to you pursuant to this Agreement.
+
+12. If You Have Any Questions, Please Contact Us
+
+If you have any questions about the terms, conditions, obligations, limitations,
+or restrictions set forth in this Agreement, please do not hesitate to contact
+us at sales@xnor.ai. If, prior to accessing or using the XNOR.AI SDK, you decide
+that you do not agree to any of the terms, conditions, obligations, limitations,
+or restrictions set forth in this Agreement, you have no right to use the
+XNOR.AI SDK. In that case, do not attempt to access or use the XNOR.AI SDK by
+any means, and if you have already done so, promptly delete the XNOR.AI SDK from
+all machines or other devices owned, leased, or otherwise controlled by you.
+
+# # #
+
+
