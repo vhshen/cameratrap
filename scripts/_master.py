@@ -13,14 +13,14 @@ test = 0
 #import stable_modes
 import mode_background
 import mode_comm_lora
-import mode_primary_im_cnn
+#import mode_primary_im_cnn
 import mode_sentinel
 import sort_images_into_directories
 import static_image_bounding_box
 import rpi_setup
 
 rpi_setup(test)
-print('Successful Setup')
+
 
 #Loop to run consistently run on RasPi
 
