@@ -40,7 +40,6 @@ def _make_argument_parser():
                         help="file to write result to")
     return parser
 
-
 def main(args=None):
     # Step 0: Parse command-line arguments
     parser = _make_argument_parser()
@@ -84,7 +83,6 @@ def main(args=None):
 
     # Step 5: Save the result!
     image.save(args.output_image)
-
 
 if __name__ == '__main__':
     main()

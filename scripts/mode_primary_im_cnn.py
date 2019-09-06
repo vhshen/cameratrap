@@ -38,8 +38,6 @@ except ImportError:
              "    python3 -m pip install --user xnornet-<...>.whl\n\n"
              "(drop the --user if you are using a virtualenv)")
 
-
-
 ## Define Functions
 def _draw_pillow_rectangle_with_width(pillow_draw, xy, color=None, width=1):
     """ImageDraw does not support drawing rectangle with width, this is a
@@ -124,6 +122,10 @@ def _draw_bounding_box(image, bounding_boxes, resolution, color):
     print("Finished drawing.")
     return image
 
+def cam_flash():
+
+
+
 def main(args=None):
     parser = _make_argument_parser()
     args = parser.parse_args(args)
@@ -152,6 +154,8 @@ def main(args=None):
     camera.video_stabilization = args.camera_video_stablization
 
     # Record to the internal CircularIO
+    #Start Flash
+    cam_flash
     camera.start_recording(stream, format="rgb")
     # Load model
     model = xnornet.Model.load_built_in()
@@ -159,11 +163,11 @@ def main(args=None):
     if "person" not in model.class_labels:
         sys.exit(model.name + " doesn't classify 'person', exiting.")
 
-    print("Xnor CLI Surveillance Demo")
+    print("Species CNN")
     print("Model: {}".format(model.name))
     print("  version {!r}".format(model.version))
 
-    # A counter that will record the consecutive number of frames that person is
+    # A counter that will record the consecutive number of frames that a class is
     # detected
     person_detected = 0
     detected_last_frame = False

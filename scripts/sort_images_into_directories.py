@@ -37,7 +37,6 @@ except ImportError:
         "model you want to use from the 'lib' directory.", file=sys.stderr)
     raise
 
-
 def _make_argument_parser():
     parser = argparse.ArgumentParser(
         description=__doc__, allow_abbrev=False,
@@ -52,7 +51,6 @@ def _make_argument_parser():
         "rather than copying them. This will remove all jpeg files from the "
         "input directory.")
     return parser
-
 
 def main(args=None):
     parser = _make_argument_parser()
@@ -119,7 +117,6 @@ def main(args=None):
             os.rename(source_path, dest_path)
         else:
             shutil.copyfile(source_path, dest_path)
-
 
 if __name__ == '__main__':
     main()

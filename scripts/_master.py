@@ -44,8 +44,15 @@ lora = TinyLoRa(spi, cs, irq, rst, ttn_config, channel=0)
 GPIO.setwarnings(False)
 GPIO.setup(4, GPIO.IN)
 
-# Import Scripts
+# Import External Scripts
 import stable_modes
+import mode_background
+import mode_comm_lora
+import mode_primary_im_cnn
+import mode_sentinel
+import sort_images_into_directories
+import static_image_bounding_box
+
 
 print('Successful Setup')
 
@@ -55,7 +62,7 @@ while True:
 	 mode_sentinel
 	 if :
 		mode_primary_im_cnn
-		
+
 
 
 	 else
