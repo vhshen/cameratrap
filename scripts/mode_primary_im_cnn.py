@@ -75,8 +75,7 @@ def _make_argument_parser():
         "--camera_shutter_speed", action='store', type=int, default=1500,
         help="Adjust the shutter speed of the camera in microseconds. "
         "0 means auto shutter speed."
-        "https://picamera.readthedocs.io/en/release-1.13/api_camera.html#picamera.PiCamera.shutter_speed"
-    )
+        "https://picamera.readthedocs.io/en/release-1.13/api_camera.html#picamera.PiCamera.shutter_speed")
     parser.add_argument(
         "--camera_video_stablization", action='store_true',
         help="Whether to turn on the video stablization, video "
@@ -84,6 +83,9 @@ def _make_argument_parser():
     parser.add_argument(
         "--bounding_box_color", action='store', default="red",
         help="Bounding box color. Accepts common HTML color names.")
+    parser.add_argument(
+        "--camera_flash", action='store', type=int, default=0,
+        help="Camera IR Flash On/Off")
     parser.add_argument(
         "--detection_confidence", action='store', type=int, default=5,
         help="If anything is detected consecutively for detection_confidence "
@@ -121,8 +123,6 @@ def _draw_bounding_box(image, bounding_boxes, resolution, color):
         _draw_pillow_rectangle_with_width(draw, [x0y0, x1y1], color, 5)
     print("Finished drawing.")
     return image
-
-def cam_flash():
 
 
 
