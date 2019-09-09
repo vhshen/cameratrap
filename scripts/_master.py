@@ -1,5 +1,3 @@
-
-
 #Imported needed libraries
 import time
 import sys
@@ -10,10 +8,10 @@ import os
 test = 0
 
 # Import External Scripts
-#import stable_modes
+# import stable_modes
 import mode_background
 import mode_comm_lora
-#import mode_primary_im_cnn
+import mode_primary_im_cnn
 import mode_sentinel
 import sort_images_into_directories
 import static_image_bounding_box

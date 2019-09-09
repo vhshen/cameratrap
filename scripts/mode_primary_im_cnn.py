@@ -10,8 +10,8 @@ import argparse
 import os
 import sys
 
-if sys.version_info[0] < 3:
-    sys.exit("This sample requires Python 3. Please install Python 3!")
+#if sys.version_info[0] < 3:
+#    sys.exit("This sample requires Python 3. Please install Python 3!")
 
 try:
     from PIL import Image
