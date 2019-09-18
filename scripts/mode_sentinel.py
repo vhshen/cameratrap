@@ -12,8 +12,8 @@ import time
 
 if sys.version_info[0] < 3:
     sys.exit("This sample requires Python 3. Please install Python 3!")
-
 def main(args=None):
+	if trigger
 	j = 0 
 	while True:
 		#Take input from PIR sensor

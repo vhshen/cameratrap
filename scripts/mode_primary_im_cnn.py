@@ -5,13 +5,13 @@ This is an example to show case about xnornet surveillance use cases.
 The example needs to work with a person classification/detection model.
 """
 
-## Setup (Copy stable version into _master.py)
+
 import argparse
 import os
 import sys
 
-#if sys.version_info[0] < 3:
-#    sys.exit("This sample requires Python 3. Please install Python 3!")
+if sys.version_info[0] < 3:
+    sys.exit("This sample requires Python 3. Please install Python 3!")
 
 try:
     from PIL import Image
@@ -155,89 +155,76 @@ def main(args=None):
 
     # Record to the internal CircularIO
     #Start Flash
-    cam_flash
+    #cam_flash()
     camera.start_recording(stream, format="rgb")
     # Load model
     model = xnornet.Model.load_built_in()
 
-    if "person" not in model.class_labels:
-        sys.exit(model.name + " doesn't classify 'person', exiting.")
+    #if "person" not in model.class_labels:
+    #    sys.exit(model.name + " doesn't classify 'person', exiting.")
 
     print("Species CNN")
     print("Model: {}".format(model.name))
     print("  version {!r}".format(model.version))
+    
 
-    # A counter that will record the consecutive number of frames that a class is
-    # detected
-    person_detected = 0
-    detected_last_frame = False
-    bounding_boxes = []
-
-    while person_detected < args.detection_confidence:
+    animal_detected = 0             # Initialize Animal Detector Counter (Confidence) 
+    detected_last_frame = False     # Initialize Detection Status
+    bounding_boxes = []             # 
+    false_positive = 0              # Initialize False Positive Counter
+    false_positive_threshold = 5    # How many frames to check before giving up
+    
+    while false_positive < false_positive_threshold:
         detected_this_frame = False
         # Get the frame from the CircularIO buffer.
         cam_buffer = stream.getvalue()
-        # The camera has not written anything to the CircularIO yet
-        # Thus no frame is been captured
+        # The camera has not written anything to the CircularIO yet, thus no frame is been captured
         if len(cam_buffer) != SINGLE_FRAME_SIZE_RGB:
             continue
         # Passing corresponding RGB
         model_input = xnornet.Input.rgb_image(input_res[0:2], cam_buffer)
         # Evaluate
         results = model.evaluate(model_input)
-
+        # Check frame model results
         for result in results:
-            local_person_detected = False
-            if type(result) is xnornet.BoundingBox:
-                local_person_detected = result.class_label.label == 'person'
-            elif type(result) is xnornet.ClassLabel:
-                local_person_detected = result.label == 'person'
-            else:
-                raise ValueError("Unsupported xnornet inference result")
-
-            # If we already detected person in this frame, we don't want to
-            # over count.
-            if local_person_detected and not detected_this_frame:
-                if person_detected < args.detection_confidence:
+            local_animal_detected = False
+            local_animal_detected = result.class_label.label == 'bird'
+            # If we already detected animal in this frame, we don't want to over count.
+            if local_animal_detected and not detected_this_frame:
+                if animal_detected < args.detection_confidence:
                     # If we haven't confirmed, then increase our confidence.
                     if detected_last_frame:
-                        person_detected += 1
-                    # If we didn't confirm last frame but we detected in
-                    # this frame, we want to reset our confidence.
+                        animal_detected += 1
+                    # If we didn't confirm last frame but we detected in this frame, we want to reset our confidence.
                     else:
-                        person_detected = 1
-
-            # We detected a person in this frame
-            if local_person_detected:
+                        animal_detected = 1
+            # We detected an animal in this frame
+            if local_animal_detected:
                 detected_this_frame = True
             # Update the history
             detected_last_frame = detected_this_frame
-
-            # If it's a detection model, we want to save the coordinates of the
-            # bounding box for drawing purpose if we confirmed that a person is
-            # detected.
-            if type(result) is xnornet.BoundingBox and \
-                    person_detected >= args.detection_confidence:
-                bounding_boxes.append(result.rectangle)
-
-        if person_detected >= args.detection_confidence:
+            # Draw Bounding Box
+            bounding_boxes.append(result.rectangle)
+        if animal_detected >= args.detection_confidence:
             # Classification model
             if len(bounding_boxes) == 0:
-                print("Person detected!")
+                print("Animal detected!")
             else:  # Detection model
-                print("{} person detected!".format(len(bounding_boxes)))
+                print("{} animal detected!".format(len(bounding_boxes)))
             image = _convert_to_pillow_img(cam_buffer, input_res)
             if not (args.no_draw_bounding_box) and len(bounding_boxes) != 0:
                 image = _draw_bounding_box(image, bounding_boxes, input_res,
                                            args.bounding_box_color)
             _save_image_to_disk(image, args.output_filename)
         else:
-            print("Detecting...")
-
+            print("Checking...")
+            false_positive += 1
+            
     print("Cleaning up...")
     camera.stop_recording()
     camera.close()
+    print("")
 
-## Script (Copy stable version into a function in stable_modes.py)
+
 if __name__ == "__main__":
     main()

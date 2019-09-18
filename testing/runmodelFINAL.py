@@ -13,8 +13,9 @@ import cv2
 import pickle 
 import requests
 import sys
+print("Successful import!")
 
-model_file="deer_model_please_work.h5"
+model_file= ""
 model=tf.keras.models.load_model(model_file)
 config=model.get_config()
 weights=model.get_weights()
@@ -36,5 +37,6 @@ def predictor(image):
   preds= model.predict_classes(test_image_batch, batch_size=1)
   probs= model.predict(test_image_batch, batch_size=1)
   print(preds)
-  
+
+
 predictor(img)
