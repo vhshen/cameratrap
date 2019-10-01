@@ -3,7 +3,8 @@ import time
 import numpy as np
 import os
 from annotation import Annotator
-from tflite_runtime.interpreter import Interpreter
+from tensorflow.lite.python.interpreter import Interpreter
+#from tflite_runtime.interpreter import Interpreter
 from PIL import Image
 import re
 
