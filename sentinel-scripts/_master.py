@@ -263,7 +263,7 @@ while True:
         current_background, ai_sensitivity)
         print('Model Complete')
         primary_result_array = np.append(primary_result_array, primary_result)
-        print(primary_result_array[0])
+        print(primary_result_array)
         #primary_result_array[0
         #print('Insert outcome from primary model, queing:', primary_class, primary_confidence)
         # Run Secondary Model (if it exists)

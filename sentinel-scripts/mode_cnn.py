@@ -14,7 +14,6 @@ def save_data(image,results,path,ext='jpg'):
     image.save(name)
     print('Frame saved as: %s' %name)
     logging.info('Image: %s Results: %s', results)
-# For
 # Allows for localized training
 def do_training(results,last_results,top_k):
     """Compares current model results to previous results and returns
@@ -42,8 +41,6 @@ def live_annotate_objects(annotator, results, labels):
     annotator.bounding_box([xmin, ymin, xmax, ymax])
     annotator.text([xmin, ymin],
                    '%s\n%.2f' % (labels[obj['class_id']], obj['score']))
-
-
 # Function to pull the labels from a path string
 def load_labels(path):
   """Loads the labels file. Supports files with or without index numbers."""
