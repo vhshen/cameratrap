@@ -101,13 +101,13 @@ def bb_crop(data_directory,file, aoi, result, classes, results_directory, i):
     top = int(aoi[1] * im_height)
     cropped_im = im.crop((left, top, right, bottom))
     filename = '%s/%s-%s' %(results_directory,str(i),file)
-    print('Saving Cropped Image as:',filename)
+    #print('Saving Cropped Image as:',filename)
     cropped_im = cropped_im.save(filename)
 
 def tflite_im(interpreter, input_width, input_height, data_directory,file, threshold, results_directory):
     """Returns a list of detection results, each a dictionary of object info."""
     file_path = os.path.join(data_directory,file)
-    print('Current Image:', file)
+    #print('Current Image:', file)
     current_file = Image.open(file_path).convert('RGB').resize(
       (input_height, input_width), Image.ANTIALIAS)
     tic = time.process_time()
@@ -169,7 +169,7 @@ def user_selections():
 # The main function script
 def cnn(sys_mode, mcu, vpu, model_format, type, resolution, \
     model, labels, data_directory, results_directory, \
-    current_background, ai_sensitivity):
+    current_background, ai_sensitivity, max_images):
     directory = os.fsencode(data_directory)
     animal_detected = 0             # Initialize Animal Detector Counter (Confidence)
     detected_last_frame = False     # Initialize Detection Status
@@ -179,7 +179,7 @@ def cnn(sys_mode, mcu, vpu, model_format, type, resolution, \
     image_burst = 10
     meta_array = []
     files_checked = 0
-    max_files = 500
+    max_files = max_images
     cropped_image_counter = 1
     print('Files being checked:', max_files)
     #print("Labels File:",labels)

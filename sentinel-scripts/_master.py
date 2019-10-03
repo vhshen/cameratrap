@@ -15,12 +15,13 @@ trigger_sensitivity = '20'  #int between 1-100 (twenty being highest sensitivity
 t_background = ''   # int
 t_lorawan = ''  # int
 sys_mode = 'test' # 'real'
+max_images = 100 # number of images to run in test scenario
 mcu = 'computer' # computer, rpi0
 vpu = '' # computer, rpi0, coral_acc, coral_chip, intel, sipeed
 primary_format = 'tflite' #xnor, keras, tflite
 primary_type = 'image'
-primary_labels = 'models/tflite/deer_binary/dict.txt'#'models/tflite/spermwhale/spermwhale_edge_v0_1.txt'
-primary_model = 'models/tflite/deer_binary/model.tflite'#'models/tflite/spermwhale/spermwhale_edge_v0_1.tflite'
+primary_labels = 'models/tflite/deer_binary_v0_2/dict.txt'#'models/tflite/spermwhale/spermwhale_edge_v0_1.txt'
+primary_model = 'models/tflite/deer_binary_v0_2/model.tflite'#'models/tflite/spermwhale/spermwhale_edge_v0_1.tflite'
 primary_data_directory = './data/deer_train'
 primary_results_directory = 'data/results'
 secondary_format = ''
@@ -36,7 +37,7 @@ comms_backend = 'ttn'
 background_subtraction = ''
 current_background = ''
 resolution = [300,300,4]
-ai_sensitivity = 0.9
+ai_sensitivity = 0.8
 
 
 
@@ -262,10 +263,12 @@ while True:
         primary_result = mode_cnn.cnn(sys_mode, mcu, vpu, primary_format, resolution,\
         primary_type, primary_model, primary_labels, \
         primary_data_directory, primary_results_directory, \
-        current_background, ai_sensitivity)
+        current_background, ai_sensitivity, max_images)
         print('Model Complete')
         primary_result_array = np.append(primary_result_array, primary_result)
         print(primary_result_array)
+        print('Insert Code to Save Array in way that can be parsed for LoRa')
+        print('NOTE: CROPPED IMAGES ARE SAVED IN /DATA/RESULTS FOLDER ')
         #primary_result_array[0
         #print('Insert outcome from primary model, queing:', primary_class, primary_confidence)
         # Run Secondary Model (if it exists)
@@ -274,7 +277,7 @@ while True:
             secondary_output_file = mode_cnn.main(sys_mode, mcu, vpu, secondary_format, resolution,\
             secondary_type, secondary_model, secondary_labels,\
             secondary_data_directory, secondary_results_directory,
-            current_background, ai_sensitivity)
+            current_background, ai_sensitivity, max_images)
             print('Insert outcome from secondary model:')# secondary_class, secondary_confidence)
         # Run LoRa communication with outputs from primary algorithm
         if comms_type != '':
