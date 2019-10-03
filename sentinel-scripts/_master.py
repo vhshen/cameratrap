@@ -21,7 +21,7 @@ primary_format = 'tflite' #xnor, keras, tflite
 primary_type = 'image'
 primary_labels = 'models/tflite/deer_binary/dict.txt'#'models/tflite/spermwhale/spermwhale_edge_v0_1.txt'
 primary_model = 'models/tflite/deer_binary/model.tflite'#'models/tflite/spermwhale/spermwhale_edge_v0_1.tflite'
-primary_data_directory = 'data/deer_train'
+primary_data_directory = './data/deer_train'
 primary_results_directory = 'data/results'
 secondary_format = ''
 secondary_type = ''
@@ -36,7 +36,9 @@ comms_backend = 'ttn'
 background_subtraction = ''
 current_background = ''
 resolution = [300,300,4]
-ai_sensitivity = 0.6
+ai_sensitivity = 0.9
+
+
 
 # Set up System
 if sys_mode == 'test':
@@ -255,7 +257,7 @@ while True:
         print("Event Detected")
     if triggered == 1 :
         # Run Primary Model, which identifies/classifies species + confidence, and saves recorded and boxed images
-        print('Spinning up Primary Model')
+        print('Spinning up Primary Model', primary_model)
         #[primary_class, primary_confidence, primary_output_file] = ...
         primary_result = mode_cnn.cnn(sys_mode, mcu, vpu, primary_format, resolution,\
         primary_type, primary_model, primary_labels, \
@@ -268,9 +270,8 @@ while True:
         #print('Insert outcome from primary model, queing:', primary_class, primary_confidence)
         # Run Secondary Model (if it exists)
         if secondary_model :
-            crop_bb()
             #[secondary_class, secondary_confidence, secondary_output_file] = ...
-            mode_cnn.main(sys_mode, mcu, vpu, secondary_format, resolution,\
+            secondary_output_file = mode_cnn.main(sys_mode, mcu, vpu, secondary_format, resolution,\
             secondary_type, secondary_model, secondary_labels,\
             secondary_data_directory, secondary_results_directory,
             current_background, ai_sensitivity)
@@ -278,7 +279,11 @@ while True:
         # Run LoRa communication with outputs from primary algorithm
         if comms_type != '':
             mode_comms.main(primary_class, primary_confidence, secondary_class, secondary_confidence, device_identifier, comms_type, comms_backend)
-        sys.exit('Completed Scenario')
+        if sys_mode == 'test':
+            sys.exit('Completed Scenario')
+        if syst_mode == 'real':
+            triggered == 0
+            print('System Reset')
     if trigger_check == 0 and t_backgrond != 0 and time > t_backgrond :
         current_background = mode_background.main()
         t_background = 0

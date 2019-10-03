@@ -2,8 +2,12 @@ def crop(image, x1, x2, y1, y2) :
     # Improting Image class from PIL module
     from PIL import Image
 
+    # Pull information from the result
+
+
     # Opens a image in RGB mode
     im = Image.open(image)
+
 
     # Cropped image of above dimension
     # (It will not change orginal image)

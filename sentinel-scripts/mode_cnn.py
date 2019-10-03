@@ -3,18 +3,13 @@ import time
 import numpy as np
 import os
 from annotation import Annotator
+import tensorflow as tf
 from tensorflow.lite.python.interpreter import Interpreter
 #from tflite_runtime.interpreter import Interpreter
 from PIL import Image
 import re
 
 
-#Saves camera frame and model inference results to user-defined storage directory
-def save_data(image,results,path,ext='jpg'):
-    name = '%simg-%s.%s' %(path,tag,ext)
-    image.save(name)
-    print('Frame saved as: %s' %name)
-    logging.info('Image: %s Results: %s', results)
 # Allows for localized training
 def do_training(results,last_results,top_k):
     """Compares current model results to previous results and returns
@@ -87,13 +82,36 @@ def imageAdder(path_in):
   image2    = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
   img       = cv2.resize(image, (224,224))
   return img
+def bb_crop(data_directory,file, aoi, result, classes, results_directory, i):
+    # open image
+    file_path = os.path.join(data_directory,file)
+    im = Image.open(file_path)
+    # save size of original (full-res) pic
+    im_width, im_height = im.size
+    #print('Image Width', im_width)
+    #print('Image Height', im_height)
+    # make sure bounding boxes are within bounds of image
+    for j in range(0,4) :
+        aoi[j] = max(min(aoi[j],1),0)
+    #print('Area of Interest (fixed)',aoi)
+    # pull coordinates and convert to correct of original (full-res) pic
+    left = int(aoi[0] * im_width)
+    right = int(aoi[2] * im_width)
+    bottom = int(aoi[3] * im_height)
+    top = int(aoi[1] * im_height)
+    cropped_im = im.crop((left, top, right, bottom))
+    filename = '%s/%s-%s' %(results_directory,str(i),file)
+    print('Saving Cropped Image as:',filename)
+    cropped_im = cropped_im.save(filename)
 
-def tflite_im(interpreter, input_width, input_height, file_path, threshold):
+def tflite_im(interpreter, input_width, input_height, data_directory,file, threshold, results_directory):
     """Returns a list of detection results, each a dictionary of object info."""
-    file = Image.open(file_path).convert('RGB').resize(
+    file_path = os.path.join(data_directory,file)
+    print('Current Image:', file)
+    current_file = Image.open(file_path).convert('RGB').resize(
       (input_height, input_width), Image.ANTIALIAS)
     tic = time.process_time()
-    set_input_tensor(interpreter, file)
+    set_input_tensor(interpreter, current_file)
     interpreter.invoke()
 
     # Get all output details
@@ -102,20 +120,25 @@ def tflite_im(interpreter, input_width, input_height, file_path, threshold):
     scores = get_output_tensor(interpreter, 2)
     count = int(get_output_tensor(interpreter, 3))
 
-    results = []
+    meta = []
+    meta_array = []
     toc = time.process_time()
     clock = toc - tic
     for i in range(count):
         if scores[i] >= threshold:
-          result = {
+          # crop images
+          #crop(image, boxes)
+          # save results in an array
+          meta = {
               'file': file_path,
               'bounding_box': boxes[i],
               'class_id': classes[i],
               'score': scores[i],
-              'time': clock
-          }
-          results.append(result)
-    return results
+              'time': clock}
+          #print(boxes[i])
+          bb_crop(data_directory, file, boxes[i], meta, classes[i], results_directory, i)
+          np.append(meta_array, meta)
+    return meta
 
 # Defines the inputs to the script
 def user_selections():
@@ -154,9 +177,10 @@ def cnn(sys_mode, mcu, vpu, model_format, type, resolution, \
     false_positive = 0              # Initialize False Positive Counter
     false_positive_threshold = 5    # How many frames to check before giving up
     image_burst = 10
-    result_array = []
+    meta_array = []
     files_checked = 0
-    max_files = 15
+    max_files = 500
+    cropped_image_counter = 1
     print('Files being checked:', max_files)
     #print("Labels File:",labels)
     labels = load_labels(labels)
@@ -207,7 +231,7 @@ def cnn(sys_mode, mcu, vpu, model_format, type, resolution, \
                 #    continue
                 # Passing corresponding RGB
                 results = tflite_im(interpreter, image, ai_sensitivity)
-                print(results)
+                #print(results)
                 # If we already detected animal in this frame, we don't want to over count.
                 if local_animal_detected and not detected_this_frame:
                     if animal_detected < args.detection_confidence:
@@ -238,7 +262,7 @@ def cnn(sys_mode, mcu, vpu, model_format, type, resolution, \
                     filename = os.fsdecode(file)
                     if filename.endswith(".jpg") or filename.endswith(".png") or filename.endswith(".jpeg"):
                         current_image = os.path.join(data_directory,file)
-                        print('Current Image:', current_image)
+                        #print('Current Image:', current_image)
                         results = tflite_im(interpreter, input_width, input_height, current_image, ai_sensitivity)
                     else:
                         print("All Burst Files Checked")
@@ -252,24 +276,24 @@ def cnn(sys_mode, mcu, vpu, model_format, type, resolution, \
                     break
                 filename = os.fsdecode(file)
                 if filename.endswith(".jpg") :
-                    result = filename
-                    current_image = os.path.join(data_directory,file)
-                    #print('Current Image:', current_image)
-                    result = tflite_im(interpreter, input_width, input_height, current_image, ai_sensitivity)
-
+                    meta = tflite_im(interpreter, input_width, input_height, \
+                    data_directory,file, ai_sensitivity, results_directory)
                     #print(result)
-                    #result_row = result.append(result)
+                    meta_array = np.append(meta_array, meta)
                     #print('Input to CNN:',image)
                 else:
                     print("All files Checked")
                     break
-                result_array = np.append(result_array, result)
-                #print(result_array)
+                #result_array = np.append(result_array, result)
+
+                #top = result_array['bounding_box'][i]
+                #print(top)
+                #print(meta_array)
                 files_checked += 1
         # take images from the directory of saved images
     if type == 'video' :
         print('Code for Video Recognition not Completed')
-    return result_array
+    return meta_array
 
 
 if __name__ == "__main__":
