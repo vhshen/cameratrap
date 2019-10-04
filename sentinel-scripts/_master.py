@@ -7,6 +7,7 @@ import time
 import mode_cnn
 import crop_bb
 import numpy as np
+import csv
 
 ## Master Script for CXL Camera Trap Control
 trigger = 'pir'     # 'pir' or 'ir'
@@ -15,7 +16,9 @@ trigger_sensitivity = '20'  #int between 1-100 (twenty being highest sensitivity
 t_background = ''   # int
 t_lorawan = ''  # int
 sys_mode = 'test' # 'real'
-max_images = 100 # number of images to run in test scenario
+max_images = 10 # number of images to run in test scenario
+save_cropped_im = 1
+reset_results = 1
 mcu = 'computer' # computer, rpi0
 vpu = '' # computer, rpi0, coral_acc, coral_chip, intel, sipeed
 primary_format = 'tflite' #xnor, keras, tflite
@@ -32,16 +35,28 @@ secondary_data_directory = ''
 secondary_results_directory = ''
 results_directory = ''
 device_identifier = ''
-comms_type = '' #'lora_rfm9x'
+comms_type = ''#'lora_rfm9x' #'lora_rfm9x'
 comms_backend = 'ttn'
 background_subtraction = ''
 current_background = ''
 resolution = [300,300,4]
-ai_sensitivity = 0.8
-
+ai_sensitivity = 0.95
+lora_counter = 0
 
 
 # Set up System
+if reset_results == 1:
+    import os, shutil
+    folder = primary_results_directory
+    for the_file in os.listdir(folder):
+        file_path = os.path.join(folder, the_file)
+        try:
+            if os.path.isfile(file_path):
+                os.unlink(file_path)
+        #elif os.path.isdir(file_path): shutil.rmtree(file_path)
+        except Exception as e:
+            print(e)
+
 if sys_mode == 'test':
     print('Mode: Test')
 if sys_mode == 'real':
@@ -260,28 +275,26 @@ while True:
         # Run Primary Model, which identifies/classifies species + confidence, and saves recorded and boxed images
         print('Spinning up Primary Model', primary_model)
         #[primary_class, primary_confidence, primary_output_file] = ...
-        primary_result = mode_cnn.cnn(sys_mode, mcu, vpu, primary_format, resolution,\
+        primary_class, primary_confidence = mode_cnn.cnn(sys_mode, mcu, vpu, primary_format, resolution,\
         primary_type, primary_model, primary_labels, \
         primary_data_directory, primary_results_directory, \
         current_background, ai_sensitivity, max_images)
         print('Model Complete')
-        primary_result_array = np.append(primary_result_array, primary_result)
-        print(primary_result_array)
         print('Insert Code to Save Array in way that can be parsed for LoRa')
-        print('NOTE: CROPPED IMAGES ARE SAVED IN /DATA/RESULTS FOLDER ')
-        #primary_result_array[0
-        #print('Insert outcome from primary model, queing:', primary_class, primary_confidence)
+        print('NOTE: CROPPED IMAGES AND .CSV RESULTS FILE ARE SAVED IN /DATA/RESULTS FOLDER ')
+
         # Run Secondary Model (if it exists)
         if secondary_model :
             #[secondary_class, secondary_confidence, secondary_output_file] = ...
-            secondary_output_file = mode_cnn.main(sys_mode, mcu, vpu, secondary_format, resolution,\
+            secondary_class, secondary_confidence = mode_cnn.main(sys_mode, mcu, vpu, secondary_format, resolution,\
             secondary_type, secondary_model, secondary_labels,\
-            secondary_data_directory, secondary_results_directory,
-            current_background, ai_sensitivity, max_images)
+            primary_results_directory, secondary_results_directory,
+        current_background, ai_sensitivity, max_images)
             print('Insert outcome from secondary model:')# secondary_class, secondary_confidence)
         # Run LoRa communication with outputs from primary algorithm
         if comms_type != '':
-            mode_comms.main(primary_class, primary_confidence, secondary_class, secondary_confidence, device_identifier, comms_type, comms_backend)
+            lora_counter = mode_comms.main(primary_class, sum(primary_confidence), secondary_class, secondary_confidence,\
+            device_identifier, comms_type, comms_backend, lora_counter)
         if sys_mode == 'test':
             sys.exit('Completed Scenario')
         if syst_mode == 'real':
