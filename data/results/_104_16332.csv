@@ -1,0 +1,4 @@
+file,bounding_box,class_id,score,time
+./data/deer_train/Deer_Train1463.jpg,[0.03960673 0.08204175 0.9893096  0.9644984 ],0.0,0.9921875,0.29804790599999986
+./data/deer_train/Deer_Train298.jpg,[0.         0.         1.         0.83807886],0.0,0.98046875,0.31138227900000004
+./data/deer_train/Deer_Train1452.jpg,[0.         0.20604652 1.         0.76678634],0.0,0.953125,0.26260581100000024

@@ -7,6 +7,7 @@ import tensorflow as tf
 from tensorflow.lite.python.interpreter import Interpreter
 #from tflite_runtime.interpreter import Interpreter
 from PIL import Image
+import csv
 import re
 
 
@@ -63,26 +64,9 @@ def get_output_tensor(interpreter, index):
   output_details = interpreter.get_output_details()[index]
   tensor = np.squeeze(interpreter.get_tensor(output_details['index']))
   return tensor
-
-# Will's Initial keras Model function
-def tf_image_detector():
-    print('Add more code for keras implemenation')
-    model             = tf.keras.models.load_model(model_file)
-    config            = model.get_config()
-    weights           = model.get_weights()
-    test_image_batch  = data_point
-    test_image_batch  = test_image_batch.reshape(1, 224, 224, 3)
-    result_class      = model.predict_classes(test_image_batch, batch_size=1)
-    result_confidence = model.predict(test_image_batch, batch_size=1)
-    return (result_class, result_confidence)
-# Adds image file to allow it to be run (Will's Code, may be depreciated)
-def imageAdder(path_in):
-  path      = path_in
-  image     = cv2.imread(path)
-  image2    = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-  img       = cv2.resize(image, (224,224))
-  return img
+# Function to Save Cropped Images
 def bb_crop(data_directory,file, aoi, result, classes, results_directory, i):
+    crop_buffer = .15
     # open image
     file_path = os.path.join(data_directory,file)
     im = Image.open(file_path)
@@ -92,6 +76,10 @@ def bb_crop(data_directory,file, aoi, result, classes, results_directory, i):
     #print('Image Height', im_height)
     # make sure bounding boxes are within bounds of image
     for j in range(0,4) :
+        if aoi[j] >= .50 :
+            aoi[j] = aoi[j]+crop_buffer
+        else :
+            aoi[j] = aoi[j]-crop_buffer
         aoi[j] = max(min(aoi[j],1),0)
     #print('Area of Interest (fixed)',aoi)
     # pull coordinates and convert to correct of original (full-res) pic
@@ -119,15 +107,15 @@ def tflite_im(interpreter, input_width, input_height, data_directory,file, thres
     classes = get_output_tensor(interpreter, 1)
     scores = get_output_tensor(interpreter, 2)
     count = int(get_output_tensor(interpreter, 3))
-
+    #print(boxes[0,0])
     meta = []
     meta_array = []
+    thresh_classes = []
+    thresh_scores = []
     toc = time.process_time()
     clock = toc - tic
     for i in range(count):
         if scores[i] >= threshold:
-          # crop images
-          #crop(image, boxes)
           # save results in an array
           meta = {
               'file': file_path,
@@ -136,9 +124,13 @@ def tflite_im(interpreter, input_width, input_height, data_directory,file, thres
               'score': scores[i],
               'time': clock}
           #print(boxes[i])
+          thresh_classes = np.append(thresh_classes, classes[i])
+          thresh_scores = np.append(thresh_scores, scores[i])
           bb_crop(data_directory, file, boxes[i], meta, classes[i], results_directory, i)
-          np.append(meta_array, meta)
-    return meta
+          meta_array = np.append(meta_array, meta)
+    #print('Caution: Not returning all captured labels to confidence calcualtion')
+    #print('Boxes Pulled from Numpy', meta['time'])
+    return meta_array, thresh_classes, thresh_scores
 
 # Defines the inputs to the script
 def user_selections():
@@ -179,7 +171,12 @@ def cnn(sys_mode, mcu, vpu, model_format, type, resolution, \
     image_burst = 10
     meta_array = []
     files_checked = 0
+    confidence = []
+    k = 1
+    prev_class = 0
+    prev_confidence = 0
     max_files = max_images
+    classes = []
     cropped_image_counter = 1
     print('Files being checked:', max_files)
     #print("Labels File:",labels)
@@ -267,6 +264,7 @@ def cnn(sys_mode, mcu, vpu, model_format, type, resolution, \
                     else:
                         print("All Burst Files Checked")
                         break
+
         # Test Scenario (running algorithm on files presaved to data_directory)
         if sys_mode == 'test' :
             print('Test Script Initialized...')
@@ -276,24 +274,31 @@ def cnn(sys_mode, mcu, vpu, model_format, type, resolution, \
                     break
                 filename = os.fsdecode(file)
                 if filename.endswith(".jpg") :
-                    meta = tflite_im(interpreter, input_width, input_height, \
+                    meta, n_classes, n_confidence = tflite_im(interpreter, input_width, input_height, \
                     data_directory,file, ai_sensitivity, results_directory)
                     #print(result)
                     meta_array = np.append(meta_array, meta)
+                    classes = np.append(classes, n_classes)
+                    confidence = np.append(confidence, n_confidence)
                     #print('Input to CNN:',image)
                 else:
                     print("All files Checked")
                     break
-                #result_array = np.append(result_array, result)
-
-                #top = result_array['bounding_box'][i]
-                #print(top)
-                #print(meta_array)
                 files_checked += 1
-        # take images from the directory of saved images
+
+
     if type == 'video' :
         print('Code for Video Recognition not Completed')
-    return meta_array
+
+    # Write Results to timestamped .CSV File
+    csv_file = '%s/_%s%s_%s%s%s.csv' %(results_directory,time.localtime()[1],time.localtime()[2],time.localtime()[3],time.localtime()[4],time.localtime()[5])
+    csv_columns = ['file', 'bounding_box','class_id','score','time']
+    with open(csv_file, 'w') as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames = csv_columns)
+        writer.writeheader()
+        for data in meta_array :
+            writer.writerow(data)
+    return classes, confidence
 
 
 if __name__ == "__main__":
