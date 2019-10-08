@@ -106,11 +106,11 @@ def tflite_im(interpreter, input_width, input_height, data_directory,file, thres
     else:
         set_input_tensor(interpreter, current_file)
         interpreter.invoke()
-    # Get all output details
-    boxes = get_output_tensor(interpreter, 0)
-    classes = get_output_tensor(interpreter, 1)
-    scores = get_output_tensor(interpreter, 2)
-    count = int(get_output_tensor(interpreter, 3))
+    	# Get all output details
+    	boxes = get_output_tensor(interpreter, 0)
+    	classes = get_output_tensor(interpreter, 1)
+    	scores = get_output_tensor(interpreter, 2)
+    	count = int(get_output_tensor(interpreter, 3))
     #print(boxes[0,0])
     meta = []
     meta_array = []
@@ -186,10 +186,10 @@ def cnn(sys_mode, mcu, vpu, model_format, type, resolution, \
     #print("Labels File:",labels)
     labels = load_labels(labels)
     #print("Model File:",model)
-    #interpreter = Interpreter(model)
+    interpreter = Interpreter(model)
     #print("interpreter variable:",interpreter)
-    #interpreter.allocate_tensors()
-    #_, input_height, input_width, _ = interpreter.get_input_details()[0]['shape']
+    interpreter.allocate_tensors()
+    _, input_height, input_width, _ = interpreter.get_input_details()[0]['shape']
     #print('Image Input Size... Height', input_height,'Width:',input_width)
     #print('Loaded CNN Parameters')
 
