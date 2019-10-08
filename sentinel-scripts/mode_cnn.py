@@ -2,14 +2,14 @@ import argparse
 import time
 import numpy as np
 import os
-from annotation import Annotator
-import tensorflow as tf
-from tensorflow.lite.python.interpreter import Interpreter
-#from tflite_runtime.interpreter import Interpreter
 from PIL import Image
 import csv
 import re
-
+from edgetpu.detection.engine import DetectionEngine
+#from annotation import Annotator
+#import tensorflow as tf
+#from tensorflow.lite.python.interpreter import Interpreter
+#from tflite_runtime.interpreter import Interpreter
 
 # Allows for localized training
 def do_training(results,last_results,top_k):
@@ -99,9 +99,13 @@ def tflite_im(interpreter, input_width, input_height, data_directory,file, thres
     current_file = Image.open(file_path).convert('RGB').resize(
       (input_height, input_width), Image.ANTIALIAS)
     tic = time.process_time()
-    set_input_tensor(interpreter, current_file)
-    interpreter.invoke()
-
+    if vpu == 'coral_acc':
+        engine = DetectionEngine(model_file)
+        interpreter = engine.DetectWithImage(current_file,threshold=threshold,\
+        keep_aspect_ratio =True, relative_coord=True,top_k=1)
+    else:
+        set_input_tensor(interpreter, current_file)
+        interpreter.invoke()
     # Get all output details
     boxes = get_output_tensor(interpreter, 0)
     classes = get_output_tensor(interpreter, 1)
