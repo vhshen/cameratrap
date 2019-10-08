@@ -200,8 +200,8 @@ def cnn(sys_mode, mcu, format, type, resolution, \
     max_files = max_images
     classes = []
     cropped_image_counter = 1
-    input_width = resolution[0]
-    input_height = resolution[1]
+    input_width = int.(resolution[0])
+    input_height = int.(resolution[1])
     reset_results = 1
 
     print('Model Format:', format)
