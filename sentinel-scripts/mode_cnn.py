@@ -188,7 +188,7 @@ def cnn(sys_mode, mcu, vpu, model_format, type, resolution, \
     #print('Loaded CNN Parameters')
 
     if vpu == 'coral_acc' :
-        engine = DetectionEngine(model_file)
+        engine = DetectionEngine(model)
         interpreter = engine.DetectWithImage(current_file,threshold=threshold,\
         keep_aspect_ratio =True, relative_coord=True,top_k=1)
         print('Add more code for the coral accelerator')
