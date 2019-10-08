@@ -119,7 +119,7 @@ def tflite_im(interpreter, input_width, input_height, data_directory,file, thres
       (input_height, input_width), Image.ANTIALIAS)
     tic = time.process_time()
 
-    interpreter = engine.DetectWithImage(current_file,threshold=threshold,\
+    interpreter = interpreter.DetectWithImage(current_file,threshold=threshold,\
     keep_aspect_ratio =True, relative_coord=True,top_k=1)
     print('Coral Accelerator!')
     # Get all output details
