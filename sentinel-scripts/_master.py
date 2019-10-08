@@ -106,21 +106,6 @@ if sys_mode == 'real':
 if sys.version_info[0] < 3:
     sys.exit("This sample requires Python 3. Please install Python 3!")
 
-# Set up System
-if reset_results == 1:
-    import os, shutil
-    if mcu == 'rpi0':
-        folder = os.path.join('../', primary_results_directory)
-    else:
-        folder = primary_results_directory
-    for the_file in os.listdir(folder):
-        file_path = os.path.join(folder, the_file)
-        try:
-            if os.path.isfile(file_path):
-                os.unlink(file_path)
-        #elif os.path.isdir(file_path): shutil.rmtree(file_path)
-        except Exception as e:
-            print(e)
 
 time = 0
 primary_result = []
