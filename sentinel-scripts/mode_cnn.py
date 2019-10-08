@@ -201,6 +201,7 @@ def cnn(sys_mode, mcu, format, type, resolution, \
     cropped_image_counter = 1
     input_width = resolution[0]
     input_height = resolution[1]
+    reset_results = 1
 
     print('Model Format:', format)
     print('Files being checked:', max_files)
@@ -213,7 +214,20 @@ def cnn(sys_mode, mcu, format, type, resolution, \
         data_directory = os.path.join('../',data_directory)
         results_directory = os.path.join('../',results_directory)
 
-
+    if reset_results == 1:
+        import os, shutil
+        if mcu == 'rpi0':
+            folder = os.path.join('../', results_directory)
+        else:
+            folder = results_directory
+        for the_file in os.listdir(folder):
+            file_path = os.path.join(folder, the_file)
+            try:
+                if os.path.isfile(file_path):
+                    os.unlink(file_path)
+            #elif os.path.isdir(file_path): shutil.rmtree(file_path)
+            except Exception as e:
+                print(e)
 
     #print('Loaded CNN Parameters')
 
