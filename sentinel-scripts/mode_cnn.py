@@ -229,7 +229,7 @@ def cnn(sys_mode, mcu, format, type, resolution, \
 
     #print('Loaded CNN Parameters')
 
-    if format == 'coral_acc' :
+    if format == 'coral' :
         interpreter = DetectionEngine(model)
     else :
         labels = load_labels(labels)
