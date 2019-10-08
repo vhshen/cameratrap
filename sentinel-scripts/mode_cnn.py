@@ -145,6 +145,10 @@ def tflite_im(format,interpreter, input_width, input_height, data_directory,file
         count = int(get_output_tensor(interpreter, 3))
     #print(boxes[0,0])
     if count:
+        print('Boxes:',boxes)
+        print('Classes',classes)
+        print('Scores:',scores)
+        print('Boxes:',boxes)
         for i in range(count):
             if scores[i] >= threshold:
               # save results in an array
