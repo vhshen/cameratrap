@@ -109,7 +109,7 @@ if sys.version_info[0] < 3:
 # Set up System
 if reset_results == 1:
     import os, shutil
-    if mcu == 'rpi0'
+    if mcu == 'rpi0':
         folder = os.path.join('../', primary_results_directory)
     else:
         folder = primary_results_directory
