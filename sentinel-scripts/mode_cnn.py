@@ -118,15 +118,15 @@ def tflite_im(interpreter, input_width, input_height, data_directory,file, thres
     current_file = Image.open(file_path).convert('RGB').resize(
       (input_height, input_width), Image.ANTIALIAS)
     tic = time.process_time()
-
+    print('Coral Accelerator!')
     interpreter = interpreter.DetectWithImage(current_file,threshold=threshold,\
     keep_aspect_ratio =True, relative_coord=True,top_k=1)
-    print('Coral Accelerator!')
+    print(interpreter)
     # Get all output details
-    boxes = get_output_tensor(interpreter, 0)
-    classes = get_output_tensor(interpreter, 1)
-    scores = get_output_tensor(interpreter, 2)
-    count = int(get_output_tensor(interpreter, 3))
+    #boxes = get_output_tensor(interpreter, 0)
+    #classes = get_output_tensor(interpreter, 1)
+    #scores = get_output_tensor(interpreter, 2)
+    #count = int(get_output_tensor(interpreter, 3))
     #print(boxes[0,0])
     meta = []
     meta_array = []
