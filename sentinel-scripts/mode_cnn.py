@@ -99,10 +99,10 @@ def tflite_im(interpreter, input_width, input_height, data_directory,file, thres
     current_file = Image.open(file_path).convert('RGB').resize(
       (input_height, input_width), Image.ANTIALIAS)
     tic = time.process_time()
-    if vpu == 'coral_acc':
-        engine = DetectionEngine(model_file)
-        interpreter = engine.DetectWithImage(current_file,threshold=threshold,\
-        keep_aspect_ratio =True, relative_coord=True,top_k=1)
+    #if vpu == 'coral_acc':
+    #    engine = DetectionEngine(model_file)
+    #    interpreter = engine.DetectWithImage(current_file,threshold=threshold,\
+    #    keep_aspect_ratio =True, relative_coord=True,top_k=1)
     else:
         set_input_tensor(interpreter, current_file)
         interpreter.invoke()
