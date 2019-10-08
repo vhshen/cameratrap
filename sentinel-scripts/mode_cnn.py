@@ -118,6 +118,15 @@ def tflite_im(format,interpreter, input_width, input_height, data_directory,file
     current_file = Image.open(file_path).convert('RGB').resize(
       (input_height, input_width), Image.ANTIALIAS)
     tic = time.process_time()
+
+    meta = []
+    meta_array = []
+    thresh_classes = []
+    thresh_scores = []
+    toc = time.process_time()
+    clock = toc - tic
+    count = ''
+
     if format == 'coral':
         print('Coral Accelerator!')
         ans = interpreter.DetectWithImage(current_file,threshold=threshold,\
@@ -127,7 +136,7 @@ def tflite_im(format,interpreter, input_width, input_height, data_directory,file
                 boxes = obj.bounding_box
                 classes = obj.label_id
                 scores = obj.score
-                count  = obj.count
+                count  = 1
     else:
         # Get all output details
         boxes = get_output_tensor(interpreter, 0)
@@ -135,13 +144,6 @@ def tflite_im(format,interpreter, input_width, input_height, data_directory,file
         scores = get_output_tensor(interpreter, 2)
         count = int(get_output_tensor(interpreter, 3))
     #print(boxes[0,0])
-    meta = []
-    meta_array = []
-    thresh_classes = []
-    thresh_scores = []
-    toc = time.process_time()
-    clock = toc - tic
-    count = ''
     if count:
         for i in range(count):
             if scores[i] >= threshold:
