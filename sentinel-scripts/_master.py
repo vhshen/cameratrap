@@ -32,7 +32,7 @@ comms_backend = 'ttn'
 background_subtraction = ''
 current_background = ''
 resolution = [300,300,4]
-ai_sensitivity = 0.95
+ai_sensitivity = 0.6
 lora_counter = 0
 
 if mcu == 'computer':

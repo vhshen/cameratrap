@@ -141,20 +141,22 @@ def tflite_im(format,interpreter, input_width, input_height, data_directory,file
     thresh_scores = []
     toc = time.process_time()
     clock = toc - tic
-    for i in range(count):
-        if scores[i] >= threshold:
-          # save results in an array
-          meta = {
-              'file': file_path,
-              'bounding_box': boxes[i],
-              'class_id': classes[i],
-              'score': scores[i],
-              'time': clock}
-          #print(boxes[i])
-          thresh_classes = np.append(thresh_classes, classes[i])
-          thresh_scores = np.append(thresh_scores, scores[i])
-          bb_crop(data_directory, file, boxes[i], meta, classes[i], results_directory, i)
-          meta_array = np.append(meta_array, meta)
+    count = ''
+    if count:
+        for i in range(count):
+            if scores[i] >= threshold:
+              # save results in an array
+              meta = {
+                  'file': file_path,
+                  'bounding_box': boxes[i],
+                  'class_id': classes[i],
+                  'score': scores[i],
+                  'time': clock}
+              #print(boxes[i])
+              thresh_classes = np.append(thresh_classes, classes[i])
+              thresh_scores = np.append(thresh_scores, scores[i])
+              bb_crop(data_directory, file, boxes[i], meta, classes[i], results_directory, i)
+              meta_array = np.append(meta_array, meta)
 
 
     #print('Caution: Not returning all captured labels to confidence calcualtion')
