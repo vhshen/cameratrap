@@ -134,7 +134,7 @@ def tflite_im(format,interpreter, input_width, input_height, data_directory,file
         classes = get_output_tensor(interpreter, 1)
         scores = get_output_tensor(interpreter, 2)
         count = int(get_output_tensor(interpreter, 3))
-    print(boxes[0,0])
+    #print(boxes[0,0])
     meta = []
     meta_array = []
     thresh_classes = []
