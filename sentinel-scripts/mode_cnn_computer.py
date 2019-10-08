@@ -7,29 +7,23 @@ import csv
 import re
 
 
-if format == 'coral_acc':
-    from edgetpu.detection.engine import DetectionEngine
-    print('Loaded: Coral Accelerator')
-    #from annotation import Annotator
-if format == 'tflite' :
-    from tflite_runtime.interpreter import Interpreter
-    print('Loaded: tflite_runtime')
-if format == 'tf_lite':
-    from tensorflow.lite.python.interpreter import Interpreter
-    print('Loaded: Tensorflow.Lite ')
-if format == 'tensorflow' :
-    import tensorflow as tf
-    import keras
-    from keras.models import load_model
-    import math
-    from pathlib import Path
-    import numpy as np
-    from PIL import Image
-    from PIL.ExifTags import TAGS
-    import cv2
-    import pickle
-    import requests
-    print('Loaded: Tensorflow / Keras')
+#from annotation import Annotator
+from tflite_runtime.interpreter import Interpreter
+print('Loaded: tflite_runtime')
+from tensorflow.lite.python.interpreter import Interpreter
+print('Loaded: Tensorflow.Lite ')
+import tensorflow as tf
+import keras
+from keras.models import load_model
+import math
+from pathlib import Path
+import numpy as np
+from PIL import Image
+from PIL.ExifTags import TAGS
+import cv2
+import pickle
+import requests
+print('Loaded: Tensorflow / Keras')
 # Allows for localized training
 def do_training(results,last_results,top_k):
     """Compares current model results to previous results and returns
@@ -119,9 +113,8 @@ def tflite_im(interpreter, input_width, input_height, data_directory,file, thres
       (input_height, input_width), Image.ANTIALIAS)
     tic = time.process_time()
 
-    interpreter = engine.DetectWithImage(current_file,threshold=threshold,\
-    keep_aspect_ratio =True, relative_coord=True,top_k=1)
-    print('Coral Accelerator!')
+    set_input_tensor(interpreter, current_file)
+    interpreter.invoke()
     # Get all output details
     boxes = get_output_tensor(interpreter, 0)
     classes = get_output_tensor(interpreter, 1)
@@ -152,31 +145,6 @@ def tflite_im(interpreter, input_width, input_height, data_directory,file, thres
     #print('Boxes Pulled from Numpy', meta['time'])
     return meta_array, thresh_classes, thresh_scores
 
-# Defines the inputs to the script
-def user_selections():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--sys_mode', required=True,
-                        help='Test or Real')
-    parser.add_argument('--mcu', required=False, default='rpi0',
-                        help='Type of Microcontroller')
-    parser.add_argument('--vpu', required=False, default='rpi0',
-                        help='Type of AI Processor')
-    parser.add_argument('--model_format', required=True,
-                        help='What format is the model in?')
-    parser.add_argument('--model_type', required=True,
-                        help='Image, Video, Acoustics, Motion')
-    parser.add_argument('--model_file', required=True,
-                        help='Specify the model file')
-    parser.add_argument('--data_directory', required=True,
-                        help='Where are the files being accessed')
-    parser.add_argument('--results_directory', required=True,
-                        help='Where are the files being saved')
-    #parser.add_argument('--do_training', required=False, default = False,
-    #                    help='Save relevant files for training custom model')
-    parser.add_argument('--current_background', required=False, default='',
-                        help='Last Recorded Background ')
-    args = parser.parse_args()
-    return args
 
 # The main function script
 def cnn(sys_mode, mcu, format, type, resolution, \

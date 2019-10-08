@@ -1,2 +1,0 @@
-file,bounding_box,class_id,score,time
-./data/deer_train/Deer_Train1463.jpg,[0.03960673 0.08204175 0.9893096  0.9644984 ],0.0,0.9921875,0.2790843129999998
