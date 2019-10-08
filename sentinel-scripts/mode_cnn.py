@@ -217,10 +217,7 @@ def cnn(sys_mode, mcu, format, type, resolution, \
 
     if reset_results == 1:
         import os, shutil
-        if mcu == 'rpi0':
-            folder = os.path.join('../', results_directory)
-        else:
-            folder = results_directory
+        folder = results_directory
         for the_file in os.listdir(folder):
             file_path = os.path.join(folder, the_file)
             try:
