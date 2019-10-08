@@ -182,19 +182,26 @@ def cnn(sys_mode, mcu, vpu, model_format, type, resolution, \
     max_files = max_images
     classes = []
     cropped_image_counter = 1
-    print('Files being checked:', max_files)
-    #print("Labels File:",labels)
-    labels = load_labels(labels)
-    #print("Model File:",model)
-    #interpreter = Interpreter(model)
-    #print("interpreter variable:",interpreter)
-    #interpreter.allocate_tensors()
-    #_, input_height, input_width, _ = interpreter.get_input_details()[0]['shape']
-    #print('Image Input Size... Height', input_height,'Width:',input_width)
+
+
+
     #print('Loaded CNN Parameters')
 
     if vpu == 'coral_acc' :
+        engine = DetectionEngine(model_file)
+        interpreter = engine.DetectWithImage(current_file,threshold=threshold,\
+        keep_aspect_ratio =True, relative_coord=True,top_k=1)
         print('Add more code for the coral accelerator')
+    else :
+        print('Files being checked:', max_files)
+        print("Labels File:",labels)
+        labels = load_labels(labels)
+        #print("Model File:",model)
+        interpreter = Interpreter(model)
+        print("interpreter variable:",interpreter)
+        interpreter.allocate_tensors()
+        _, input_height, input_width, _ = interpreter.get_input_details()[0]['shape']
+        print('Image Input Size... Height', input_height,'Width:',input_width)
 
     if type == 'image' or 'acoustic':
         if sys_mode == 'real' :
