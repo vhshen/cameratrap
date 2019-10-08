@@ -6,7 +6,7 @@ from PIL import Image
 import csv
 import re
 
-
+from edgetpu.detection.engine import DetectionEngine
 if format == 'coral_acc':
     from edgetpu.detection.engine import DetectionEngine
     print('Loaded: Coral Accelerator')
@@ -229,7 +229,7 @@ def cnn(sys_mode, mcu, format, type, resolution, \
 
     #print('Loaded CNN Parameters')
 
-    if format == 'coral' :
+    if format == 'coral_acc' :
         interpreter = DetectionEngine(model)
     else :
         labels = load_labels(labels)
