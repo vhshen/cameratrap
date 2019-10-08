@@ -118,7 +118,8 @@ def tflite_im(format,interpreter, input_width, input_height, data_directory,file
     current_file = Image.open(file_path).convert('RGB').resize(
       (input_height, input_width), Image.ANTIALIAS)
     tic = time.process_time()
-    if format == print('Coral Accelerator!')
+    if format == 'coral':
+        print('Coral Accelerator!')
         ans = interpreter.DetectWithImage(current_file,threshold=threshold,\
         keep_aspect_ratio =True, relative_coord=True,top_k=1)
         if ans:
