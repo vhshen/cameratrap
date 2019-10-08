@@ -111,23 +111,29 @@ def bb_crop(data_directory,file, aoi, result, classes, results_directory, i):
     #print('Saving Cropped Image as:',filename)
     cropped_im = cropped_im.save(filename)
 
-def tflite_im(interpreter, input_width, input_height, data_directory,file, threshold, results_directory):
+def tflite_im(format,interpreter, input_width, input_height, data_directory,file, threshold, results_directory):
     """Returns a list of detection results, each a dictionary of object info."""
     file_path = os.path.join(data_directory,file)
     #print('Current Image:', file)
     current_file = Image.open(file_path).convert('RGB').resize(
       (input_height, input_width), Image.ANTIALIAS)
     tic = time.process_time()
-    print('Coral Accelerator!')
-    interpreter = interpreter.DetectWithImage(current_file,threshold=threshold,\
-    keep_aspect_ratio =True, relative_coord=True,top_k=1)
-    print(interpreter)
-    # Get all output details
-    #boxes = get_output_tensor(interpreter, 0)
-    #classes = get_output_tensor(interpreter, 1)
-    #scores = get_output_tensor(interpreter, 2)
-    #count = int(get_output_tensor(interpreter, 3))
-    #print(boxes[0,0])
+    if format == print('Coral Accelerator!')
+        ans = interpreter.DetectWithImage(current_file,threshold=threshold,\
+        keep_aspect_ratio =True, relative_coord=True,top_k=1)
+        if ans:
+            for obj in ans:
+                boxes = obj.bounding_box
+                classes = obj.label_id
+                scores = obj.score
+                count  = obj.count
+    else:
+        # Get all output details
+        boxes = get_output_tensor(interpreter, 0)
+        classes = get_output_tensor(interpreter, 1)
+        scores = get_output_tensor(interpreter, 2)
+        count = int(get_output_tensor(interpreter, 3))
+    print(boxes[0,0])
     meta = []
     meta_array = []
     thresh_classes = []
@@ -148,6 +154,8 @@ def tflite_im(interpreter, input_width, input_height, data_directory,file, thres
           thresh_scores = np.append(thresh_scores, scores[i])
           bb_crop(data_directory, file, boxes[i], meta, classes[i], results_directory, i)
           meta_array = np.append(meta_array, meta)
+
+
     #print('Caution: Not returning all captured labels to confidence calcualtion')
     #print('Boxes Pulled from Numpy', meta['time'])
     return meta_array, thresh_classes, thresh_scores
@@ -322,7 +330,7 @@ def cnn(sys_mode, mcu, format, type, resolution, \
                     break
                 filename = os.fsdecode(file)
                 if filename.endswith(".jpg") :
-                    meta, n_classes, n_confidence = tflite_im(interpreter, input_width, input_height, \
+                    meta, n_classes, n_confidence = tflite_im(format, interpreter, input_width, input_height, \
                     data_directory,file, ai_sensitivity, results_directory)
                     #print(result)
                     meta_array = np.append(meta_array, meta)
