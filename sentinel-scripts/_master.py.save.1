@@ -1,13 +1,12 @@
-
-import sys 
-import subprocess 
-import os 
-import io 
-import pathlib as Path 
-import time 
+import sys
+import subprocess
+import os
+import io
+import pathlib as Path
+import time
 import mode_cnn
-import mode_sentinel  
-import numpy as np 
+import crop_bb
+import numpy as np
 import csv
 
 
@@ -18,7 +17,7 @@ trigger_sensitivity = '20'  #int between 1-100 (twenty being highest sensitivity
 camera = 'PiCamera'
 t_background = ''   # int
 t_lorawan = ''  # int
-sys_mode = 'real' # 'real'
+sys_mode = 'test' # 'real'
 max_images = 100 # number of images to run in test scenario
 save_cropped_im = 1
 reset_results = 1
@@ -28,7 +27,7 @@ primary_type = 'image'
 secondary_format = ''
 secondary_type = ''
 device_identifier = ''
-comms_type = ''#'lora_rfm9x' #'lora_rfm9x'
+comms_type = 'lora_rfm9x'#'lora_rfm9x' #'lora_rfm9x'
 comms_backend = 'ttn'
 background_subtraction = ''
 current_background = ''
@@ -96,12 +95,12 @@ if sys_mode == 'real':
     print('Mode: Real')
     if mcu == 'computer':
         print('Cannot run "real" mode from mcu/vpu = computer')
-    if mcu == 'rpi0':
-        #primary_format = args.primary_format
-        #secondary_format = args.secondary_format
-        #primary_type = args.primary_type
-        #secondary_type = args.secondary_type
-        print('Real Scenario running on RPi Zero')
+    if mcu == rpi0:
+        primary_format = args.primary_format
+        secondary_format = args.secondary_format
+        primary_type = args.primary_type
+        secondary_type = args.secondary_type
+
 
 
 if sys.version_info[0] < 3:

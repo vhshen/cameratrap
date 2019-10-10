@@ -1,4 +1,3 @@
-
 ## Setup (Copy stable version into _master.py)
 
 ## Script (Copy stable version into a function in stable_modes.py)
@@ -47,13 +46,13 @@ def main(trigger, trigger_check, trigger_sensitivity, image_burst, \
                 pir_status = GPIO.input(4)
     		#If no motion detected by PIR sensor
                 if pir_status == 0:
-    		        print('No Motion')
-    		        trigger_count = 0
+    		     print('No Motion')
+    		     trigger_count = 0
     		#If motion detected by PIR sensor
-                if pir_status == 1:
-    			if trigger_count <= args.trigger_sensitivity:
-    				print('Motion Detected, awaiting confirmation')
-    				time.sleep(0.5)
+    		if pir_status == 1:
+    		     if trigger_count <= args.trigger_sensitivity:
+    		         print('Motion Detected, awaiting confirmation')
+  time.sleep(0.5)
     				j = j + 1
     				print(j)
                 else:

@@ -6,8 +6,8 @@ from PIL import Image
 import csv
 import re
 
-#from edgetpu.detection.engine import DetectionEngine
-from tflite_runtime.interpreter import Interpreter
+from edgetpu.detection.engine import DetectionEngine
+#from tflite_runtime.interpreter import Interpreter
 if format == 'coral_acc':
     from edgetpu.detection.engine import DetectionEngine
     print('Loaded: Coral Accelerator')
@@ -129,15 +129,26 @@ def tflite_im(format,interpreter, input_width, input_height, data_directory,file
     count = ''
 
     if format == 'coral':
-        print('Coral Accelerator!')
+        #print('Coral Accelerator!')
         ans = interpreter.DetectWithImage(current_file,threshold=threshold,\
         keep_aspect_ratio =True, relative_coord=True,top_k=1)
+        i = 0
         if ans:
             for obj in ans:
                 boxes = obj.bounding_box
                 classes = obj.label_id
                 scores = obj.score
                 count  = 1
+                print('Need to add some code to allow multiple classes to be analyzed!')
+                meta = {'file': file_path, 'bounding_box': boxes, 'class_ide': classes, 'score': scores, 'time': clock}
+                thresh_classes = np.append(thresh_classes, classes)
+                thresh_scores =np.append(thresh_scores, scores)
+                #bb_crop(data_directory, file, boxes, meta, classes, results_directory, i)
+                print('Add code for bounding box crop function (issue with the format)')
+                meta_array = np.append(meta_array, meta)
+                print(meta)
+                i += 1
+
     else:
         # Get all output details
         boxes = get_output_tensor(interpreter, 0)
@@ -145,13 +156,12 @@ def tflite_im(format,interpreter, input_width, input_height, data_directory,file
         scores = get_output_tensor(interpreter, 2)
         count = int(get_output_tensor(interpreter, 3))
     #print(boxes[0,0])
-    if count:
+    #if count:
         print('Boxes:',boxes)
         print('Classes',classes)
         print('Scores:',scores)
-        print('Boxes:',boxes)
         for i in range(count):
-            if scores[i] >= threshold:
+            if scores[i] >= threshold or format == 'coral':
               # save results in an array
               meta = {
                   'file': file_path,
@@ -218,8 +228,8 @@ def cnn(sys_mode, mcu, format, type, resolution, \
     max_files = max_images
     classes = []
     cropped_image_counter = 1
-    input_width = 300
-    input_height = 300
+    input_width = 100
+    input_height = 100
     reset_results = 1
 
     print('Model Format:', format)
