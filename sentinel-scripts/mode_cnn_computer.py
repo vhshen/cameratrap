@@ -151,6 +151,7 @@ def cnn(sys_mode, mcu, format, type, resolution, \
     model, labels, data_directory, results_directory, \
     current_background, ai_sensitivity, max_images):
     #import_model_type(format)
+    import os
     directory = os.fsencode(data_directory)
     animal_detected = 0             # Initialize Animal Detector Counter (Confidence)
     detected_last_frame = False     # Initialize Detection Status

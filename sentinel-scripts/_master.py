@@ -18,11 +18,11 @@ camera = 'PiCamera'
 t_background = ''   # int
 t_lorawan = ''  # int
 sys_mode = 'test' # 'real'
-max_images = 10 # number of images to run in test scenario
+max_images = 100 # number of images to run in test scenario
 save_cropped_im = 1
 reset_results = 1
-mcu = 'rpi0' # computer, rpi0
-primary_format = 'coral' #coral, tf_lite,tensorflow, tflite
+mcu = 'computer' # computer, rpi0
+primary_format = 'tflite' #coral, tf_lite,tensorflow, tflite
 primary_type = 'image'
 secondary_format = ''
 secondary_type = ''
@@ -82,7 +82,7 @@ def user_selections():
 
 primary_labels = 'models/tflite/deer_binary_v0_2/dict.txt'#'models/tflite/spermwhale/spermwhale_edge_v0_1.txt'
 primary_model = 'models/tflite/deer_binary_v0_2/model.tflite'#'models/tflite/spermwhale/spermwhale_edge_v0_1.tflite'
-primary_data_directory = 'data/test'
+primary_data_directory = '/home/sam/AI_Training/deer_train'
 primary_results_directory = 'data/results'
 secondary_labels = ''
 secondary_model = ''

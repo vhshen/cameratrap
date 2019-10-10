@@ -6,7 +6,8 @@ from PIL import Image
 import csv
 import re
 
-from edgetpu.detection.engine import DetectionEngine
+#from edgetpu.detection.engine import DetectionEngine
+from tflite_runtime.interpreter import Interpreter
 if format == 'coral_acc':
     from edgetpu.detection.engine import DetectionEngine
     print('Loaded: Coral Accelerator')
