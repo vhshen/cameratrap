@@ -1,2 +1,14 @@
-
+*.jpg
+*.jpeg
+*.JPG
+*.mp4
+*.MOV
+*.avi
+*.txt
+*.json
+*.tflite
 *.pyc
+*.DS_Store
+*.tar
+*.tar.gz
+*.zip
