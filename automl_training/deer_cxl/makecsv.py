@@ -20,10 +20,10 @@ for f in os.listdir("deerimages"):
         wline.append("Deer")
         name, midx, midy, wid, hei = line.split()
         midx, midy, wid, hei = float(midx), float(midy), float(wid), float(hei)
-        x1 = midx*w - wid*w/2
-        x2 = midx*w + wid*w/2
-        y1 = midy*h - hei*h/2
-        y2 = midy*h + hei*h/2
+        x1 = midx - wid/2
+        x2 = midx + wid/2
+        y1 = midy - hei/2
+        y2 = midy + hei/2
         wline.extend([x1, y1,'','',x2,y2,'',''])
         labc.writerow(wline)
     txt.close()
