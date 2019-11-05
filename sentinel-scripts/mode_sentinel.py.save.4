@@ -1,6 +1,5 @@
 
 
-
 ## Setup (Copy stable version into _master.py)
 
 ## Script (Copy stable version into a function in stable_modes.py)
@@ -67,7 +66,7 @@ def main(trigger, trigger_check, trigger_sensitivity, image_burst, \
     print('Taking photo burst')
     while burst < image_burst:
          #t_now = datetime.datetime.now.strftime("%Y%m%d%H%M%S")
-         file = '_Testing_%s.jpg' %(burst)
+         file = '%_Testing_%s.jpg' %(burst)
          camera.capture(file)
          burst += 1
 
