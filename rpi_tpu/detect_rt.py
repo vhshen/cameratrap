@@ -1,4 +1,7 @@
-# import the necessary packages
+'''
+This program runs detection in EVERY FRAME in realtime
+Obviously this means it lags behind real time severely
+'''
 from edgetpu.detection.engine import DetectionEngine
 from imutils.video import VideoStream
 from PIL import Image
@@ -7,23 +10,20 @@ import imutils
 import time
 import cv2
  
-# construct the argument parser and parse the arguments
+# default confidence threshold is 0.4
 ap = argparse.ArgumentParser()
 ap.add_argument("-m", "--model", required=True,
             help="path to TensorFlow Lite object detection model")
 ap.add_argument("-l", "--labels", required=True,
             help="path to labels file")
-ap.add_argument("-c", "--confidence", type=float, default=0.3,
+ap.add_argument("-c", "--confidence", type=float, default=0.4,
             help="minimum probability to filter weak detections")
 args = vars(ap.parse_args())
 
-# initialize the labels dictionary
+# parse labels file, load into directory. 
 print("[INFO] parsing class labels...")
 labels = {}
- 
-# loop over the class labels file
 for row in open(args["labels"]):
-    # unpack the row and update the labels dictionary
     (classID, label) = row.strip().split(maxsplit=1)
     labels[int(classID)] = label.strip()
                  
@@ -31,18 +31,15 @@ for row in open(args["labels"]):
 print("[INFO] loading Coral model...")
 model = DetectionEngine(args["model"])
                   
-# initialize the video stream and allow the camera sensor to warmup
+# initialize the pi camera video stream
 vs = VideoStream(src=0).start()
-#vs = VideoStream(usePiCamera=False).start()
 time.sleep(2.0)
 
 # loop over the frames from the video stream
 while True:
-    # grab the frame from the threaded video stream and resize it
-    # to have a maximum width of 500 pixels
     frame = vs.read()
-    # TODO: resizing seems to currently be an issue
-    #frame = imutils.resize(frame, width=500)
+    # resize frame to half width
+    # seems like imutils currently isn't working
     frame = cv2.resize(frame, (int(frame.shape[1]*0.5), int(frame.shape[0]*0.5)))
     orig = frame.copy()
                          
@@ -79,7 +76,6 @@ while True:
         # if the `q` key was pressed, break from the loop
         if key == ord("q"):
             break                                                                        
-# do a bit of cleanup
 cv2.destroyAllWindows()
 vs.stop()
 

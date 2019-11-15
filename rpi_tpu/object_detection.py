@@ -56,14 +56,11 @@ def ReadLabelFile(file_path):
 
 def main():
   parser = argparse.ArgumentParser()
-  parser.add_argument(
-      '--model', help='Path of the detection model.', required=True)
-  parser.add_argument(
-      '--label', help='Path of the labels file.')
-  parser.add_argument(
-      '--input', help='File path of the input image.', required=True)
-  parser.add_argument(
-      '--output', help='File path of the output image.')
+  parser.add_argument('--model', help='Path of the detection model.', required=True)
+  parser.add_argument('--label', help='Path of the labels file.')
+  parser.add_argument( '--input', help='File path of the input image.', required=True)
+  parser.add_argument('--output', help='File path of the output image.')
+  parser.add_argument('--conf', help='confidence threshold', required=True)
   args = parser.parse_args()
 
   if not args.output:
@@ -74,13 +71,17 @@ def main():
   # Initialize engine.
   engine = DetectionEngine(args.model)
   labels = ReadLabelFile(args.label) if args.label else None
+  if float(args.conf) > 1.0:
+      conf = float(args.conf)/100
+  else:
+      conf = float(args.conf)
 
   # Open image.
   img = Image.open(args.input)
   draw = ImageDraw.Draw(img)
 
   # Run inference.
-  ans = engine.DetectWithImage(img, threshold=0.05, keep_aspect_ratio=True,
+  ans = engine.DetectWithImage(img, threshold=conf, keep_aspect_ratio=True,
                                relative_coord=False, top_k=10)
 
   # Display result.
