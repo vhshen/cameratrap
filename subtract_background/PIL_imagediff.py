@@ -1,3 +1,7 @@
+'''
+uses Pillow branch of PIL library
+compares two images and creates a greyscale third image of diff
+'''
 from PIL import Image, ImageChops
 point_table = ([0] + ([255] * 255))
 

@@ -1,3 +1,7 @@
+'''
+This program shows how to use background subtraction methods provided by OpenCV. 
+You can process both videos and images
+'''
 from __future__ import print_function
 import cv2
 import argparse

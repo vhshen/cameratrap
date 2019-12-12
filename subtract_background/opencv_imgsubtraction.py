@@ -1,3 +1,7 @@
+'''
+outputs a "subtracted" image
+literal pixel subtraction ~= pixel by pixel comparison
+'''
 import cv2
 
 img1 = cv2.imread("nobat2.jpg")

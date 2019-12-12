@@ -1,3 +1,7 @@
+'''
+This script finds deer files in the missouri camera traps dataset
+by parsing the JSon
+'''
 import json
 
 deerints = [4, 12, 14, 15]

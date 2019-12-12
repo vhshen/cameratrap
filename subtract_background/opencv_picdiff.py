@@ -1,3 +1,7 @@
+'''
+outputs a grayscale image of thresholding
+pixel by pixel comparison, comes out "unclean"
+'''
 # import the necessary packages
 from skimage.measure import compare_ssim
 import argparse

@@ -1,3 +1,6 @@
+'''
+processes a video and does background subtraction based on movement
+'''
 # Python code for Background subtraction using OpenCV 
 import numpy as np 
 import cv2 

@@ -1,3 +1,7 @@
+'''
+This script finds the deer in Caltech Cameratraps
+by parsing the CSV
+'''
 import csv
 
 nfile = open("deerclass.csv", "w")

@@ -17,3 +17,11 @@ If you want to do realtime detection:
 
     - folder_objdet.py runs object detection on an entire folder of
     images.
+
+object_detection.py is just for static detection of a single image
+
+googlewebscrape contains a script for being able to scrape images
+off of google images
+
+classification contains google's scripts for image classification
+(non-realtime)
