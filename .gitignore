@@ -5,7 +5,6 @@
 *.MOV
 *.avi
 *.txt
-*.json
 *.tflite
 *.pyc
 *.DS_Store
