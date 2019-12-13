@@ -1,7 +1,6 @@
 '''
 Adapted streaming code from Google, uses the gstreamer "api" in
 this folder.
-Inference times end up being faster than my own queue detection.
 '''
 import argparse
 import time

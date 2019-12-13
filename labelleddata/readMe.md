@@ -10,7 +10,7 @@ Folders:
     - negs = 100 random negative images from the VOC dataset
     - deervideos = 5 original deer video clips from youtube, each <5 seconds long
     - ground_truth = the original images run through the megadetector
-    - mAP = tool to calculate the mAP for the various models
+    - mAP = tool to calculate the mAP for the various models. The original repository can be found [here](https://github.com/Cartucho/mAP)
 
 For all the models, there are the images with drawn detections, 
 for three different confidence thresholds: 0.3, 0.4, 0.5

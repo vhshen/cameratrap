@@ -1,17 +1,17 @@
 
-Deer_Binary:
+Deer_Binary (AKA DeerOrig):
     - trained only on a few hundred (200-300) images of deer gathered by Will and Mia, source unclear. 
     - Manually labelled. 
     - Trained for highest performance (sacrificing latency)
 
-Deer_Binary_v2:
+Deer_Binary_v2 (AKA Deer2500):
     - trained with 2500 images, including the prior. Datasets used include:
         - caltech cameratraps
         - missouri cameratraps
         - openimages
     - trained for best tradeoff, aka half latency half performance
 
-Deer_Binary_v3:
+Deer_Binary_v3 (AKA Deer4000):
     - trained with 4000 images. NOT including same images/labels from the first set, composed of:
         - caltech cameratraps
         - missouri cameratraps

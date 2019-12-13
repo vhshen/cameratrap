@@ -114,7 +114,7 @@ while vs.more():
     results = model.DetectWithImage(frame, threshold=args["confidence"],
             keep_aspect_ratio=True, relative_coord=False)
     end = time.time()
-    print("Detection time: " + str(end))
+    print("Inference time: " + str(end-start))
 
     # loop over the results
     for r in results:

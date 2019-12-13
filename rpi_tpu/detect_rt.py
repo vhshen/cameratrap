@@ -54,6 +54,7 @@ while True:
     results = model.DetectWithImage(frame, threshold=args["confidence"],
             keep_aspect_ratio=True, relative_coord=False)
     end = time.time()
+    print("Inference time: " + str(end-start))
 
     # loop over the results
     for r in results:

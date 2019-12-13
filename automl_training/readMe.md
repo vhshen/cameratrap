@@ -9,7 +9,7 @@ She used several datasets:
 
 The scripts floating around in this directory and the subdirectories were to help with various functionalities, like parsing JSON, parsing CSV, finding corresponding deer labels, etc.
 
-There is also the megadetector folder, which has the original CameraTraps repository as well as some extra scripts from Vivian
+There is also the megadetector folder, which has the original [Microsoft CameraTraps repository](https://github.com/microsoft/CameraTraps) as well as some extra scripts from Vivian.
 
 Some extra info about datasets:
 Datasets that have deer, but are not labelled:
