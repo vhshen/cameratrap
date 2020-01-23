@@ -12,7 +12,7 @@ import csv
 
 
 ## Master Script for CXL Camera Trap Control
-trigger = 'pir'     # 'pir' or 'ir'
+trigger = ''     # 'pir' or 'ir'
 trigger_check = 'ir'    # 'ir' or 'paired_pir'
 trigger_sensitivity = '20'  #int between 1-100 (twenty being highest sensitivity)
 camera = 'PiCamera'
@@ -35,6 +35,8 @@ current_background = ''
 resolution = [300,300,4]
 ai_sensitivity = 0.6
 lora_counter = 0
+image_burst = 5
+
 
 if mcu == 'computer':
     import mode_cnn_computer as mode_cnn
@@ -81,9 +83,9 @@ def user_selections():
 ## Initialization
 
 
-primary_labels = 'models/tflite/deer_binary_v0_2/dict.txt'#'models/tflite/spermwhale/spermwhale_edge_v0_1.txt'
-primary_model = 'models/tflite/deer_binary_v0_2/model.tflite'#'models/tflite/spermwhale/spermwhale_edge_v0_1.tflite'
-primary_data_directory = 'data/test'#'/home/sam/AI_Training/deer_train'
+primary_labels = 'models/tflite/deer_binary_v0_2/dict.txt'
+primary_model = 'models/tflite/deer_binary_v0_2/model.tflite' #'models/tflite/spermwhale/spermwhale_edge_v0_1.tflite'
+primary_data_directory = 'data/test' #'/home/sam/AI_Training/deer_train'
 primary_results_directory = 'data/results'
 secondary_labels = ''
 secondary_model = ''
@@ -120,8 +122,8 @@ while True:
         triggered = 1
     if sys_mode == 'real': # Actual camera scenario
         triggered = mode_sentinel.main(trigger, trigger_check, \
-        trigger_sensitivity, image_burst, primary_model_type, secondary_model_type, data_directory)
-        print("Event Detected")
+        trigger_sensitivity, image_burst, primary_type, primary_data_directory)
+        #print("Event Detected")
     if triggered == 1 :
         # Run Primary Model, which identifies/classifies species + confidence, and saves recorded and boxed images
         print('Spinning up Primary Model', primary_model)

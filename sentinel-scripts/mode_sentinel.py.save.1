@@ -1,18 +1,10 @@
 
 
-
 ## Setup (Copy stable version into _master.py)
 
 ## Script (Copy stable version into a function in stable_modes.py)
-from __future__ import print_function
-import argparse
-import os
-import shutil
-import sys
-import RPi.GPIO as GPIO
-import time
-import picamera as PiCamera
-import datetime
+from __future__ import print_function import argparse import os import shutil import sys import RPi.GPIO as 
+GPIO import time import picamera as PiCamera
 
 
 def save_data(image,results,path,ext='jpeg'):
@@ -40,12 +32,13 @@ def user_selections():
     return args
 
 def main(trigger, trigger_check, trigger_sensitivity, image_burst, \
-    model_type, results_directory):
+    model_type, data_directory):
     trigger_count = 0
-    camera = PiCamera.PiCamera()
+    camera = PiCamera()
     # check if trigger exists, if it doesn't break this script and return to _master.py
     if trigger :
            print('No trigger is specified, moving forward with script')
+           burst = 0
     if trigger == 'pir':
         while True :
     		#Take input from PIR sensor
@@ -62,14 +55,15 @@ def main(trigger, trigger_check, trigger_sensitivity, image_burst, \
                          j = j + 1
                          print(j)
                     else:
-                         print('Motion Confirmed')
-    burst = 0
-    print('Taking photo burst')
-    while burst < image_burst:
-         #t_now = datetime.datetime.now.strftime("%Y%m%d%H%M%S")
-         file = '_Testing_%s.jpg' %(burst)
-         camera.capture(file)
-         burst += 1
+                         burst = 0
+    if burst == 0:
+          print('Taking photo burst')
+          while burst < image_burst:
+               camera.start_preview()
+               file = '%s/_%s%s_%s%s%s_%s.jpg' %(results_directory, time.localtime(i)[1],time.localtime(i)[2],time.localtime(i)[3], time.localtime(i)[4], time.localtime(i)[5],burst
+               sleep(2)
+               camera.capture(file)
+               burst += 1
 
 if __name__ == "__main__":
     main()
